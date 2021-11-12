@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Icon, Image } from 'semantic-ui-react';
+import { Button, Card, Grid, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -18,14 +18,24 @@ class UserDisplay extends React.Component {
           <Card.Description>{this.props.user.description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Grid columns='2'>
-            <Grid.Column>
-              <Icon name='like' />
-            </Grid.Column>
-            <Grid.Column>
-              <Icon name='chat' />
-            </Grid.Column>
-          </Grid>
+          <div className='two ui buttons'>
+            <Button animated basic color='red'>
+              <Button.Content visible>
+                <Icon name='like' />
+              </Button.Content>
+              <Button.Content hidden>
+                Like profile
+              </Button.Content>
+            </Button>
+            <Button animated basic color='blue'>
+              <Button.Content visible>
+                <Icon name='chat' />
+              </Button.Content>
+              <Button.Content hidden>
+                Message user
+              </Button.Content>
+            </Button>
+          </div>
         </Card.Content>
       </Card>
     );
