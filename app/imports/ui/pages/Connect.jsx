@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Header } from 'semantic-ui-react';
+import { Container, Card, Header, Divider, Form, Radio } from 'semantic-ui-react';
 import UserDisplay from '../components/UserDisplay';
 
 export default class Connect extends React.Component {
@@ -35,6 +35,30 @@ export default class Connect extends React.Component {
         <Card.Group>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
+        <Header>Users Connected By Surfing Ability</Header>
+        <Card.Group>
+          {[this.users[0]].map(user => <UserDisplay key={user.name} user={user} />)}
+        </Card.Group>
+        <Header>Users Connected By Time</Header>
+        <Card.Group>
+          {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
+        </Card.Group>
+        <Divider />
+        <Header>Filters:</Header>
+        <Form>
+          <Form.Group>
+            <label>Surfing Ability:</label>
+            <Form.Field control={Radio} name='ability' label='1' value='1' />
+            <Form.Field control={Radio} name='ability' label='2' value='2' />
+            <Form.Field control={Radio} name='ability' label='3' value='3' />
+            <Form.Field control={Radio} name='ability' label='4' value='4' />
+            <Form.Field control={Radio} name='ability' label='5' value='5' />
+          </Form.Group>
+          <Form.Group>
+            <label>Time You Would Like to Surf:</label>
+            <Form.Select placeholder='Time' />
+          </Form.Group>
+        </Form>
       </Container>
     );
   }
