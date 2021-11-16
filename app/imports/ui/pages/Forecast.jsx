@@ -10,6 +10,9 @@ export default class Forecast extends React.Component {
       surf: '6-10',
       tide: '0.2',
       wind: '2 NNW',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
     {
       name: 'Mokuleia',
@@ -17,6 +20,9 @@ export default class Forecast extends React.Component {
       surf: '5-8',
       tide: '0.2',
       wind: '8 SSW',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
     {
       name: 'Laniakea',
@@ -24,6 +30,9 @@ export default class Forecast extends React.Component {
       surf: '5-8',
       tide: '0.2',
       wind: '3 SSW',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
     {
       name: 'Pipeline',
@@ -31,6 +40,9 @@ export default class Forecast extends React.Component {
       surf: '6-8',
       tide: '0.2',
       wind: '2 NNW',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
     {
       name: 'Haleiwa',
@@ -38,6 +50,9 @@ export default class Forecast extends React.Component {
       surf: '4-6',
       tide: '0.2',
       wind: '3 SSW',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
     {
       name: 'Waimea Bay',
@@ -45,6 +60,9 @@ export default class Forecast extends React.Component {
       surf: '6-8',
       tide: '0.2',
       wind: '2 NNW',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
     {
       name: 'Barbers Point',
@@ -52,6 +70,9 @@ export default class Forecast extends React.Component {
       surf: '2-3',
       tide: '0.9',
       wind: '8 SSE',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
     {
       name: 'Sand Island',
@@ -59,6 +80,9 @@ export default class Forecast extends React.Component {
       surf: '2-3',
       tide: '0.8',
       wind: '9 S',
+      swells: '-',
+      wTemp: '-',
+      weather: '-',
     },
   ]
 
@@ -69,9 +93,12 @@ export default class Forecast extends React.Component {
           <Table.Row>
             <Table.HeaderCell/>
             <Table.HeaderCell>Location</Table.HeaderCell>
-            <Table.HeaderCell>Surf Height (ft)</Table.HeaderCell>
-            <Table.HeaderCell>Tide (ft)</Table.HeaderCell>
-            <Table.HeaderCell>Wind (kts)</Table.HeaderCell>
+            <Table.HeaderCell>Surf Height</Table.HeaderCell>
+            <Table.HeaderCell>Tide</Table.HeaderCell>
+            <Table.HeaderCell>Wind</Table.HeaderCell>
+            <Table.HeaderCell>Swells</Table.HeaderCell>
+            <Table.HeaderCell>Water Temp</Table.HeaderCell>
+            <Table.HeaderCell>Weather</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -81,6 +108,9 @@ export default class Forecast extends React.Component {
             <Table.Cell>{location.surf}</Table.Cell>
             <Table.Cell>{location.tide}</Table.Cell>
             <Table.Cell>{location.wind}</Table.Cell>
+            <Table.Cell>{location.swells}</Table.Cell>
+            <Table.Cell>{location.wTemp}</Table.Cell>
+            <Table.Cell>{location.weather}</Table.Cell>
           </Table.Row>)}
         </Table.Body>
       </Table>
