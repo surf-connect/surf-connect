@@ -14,16 +14,18 @@ export default class User extends React.Component {
   render() {
     return (
       <Grid container centered>
-        <Grid.Column>
+        <Grid.Row>
           <Header as="h2" textAlign="center">Edit Profile</Header>
+        </Grid.Row>
+        <Grid.Row>
           <Image src={this.accountData.image} size='small'/>
+        </Grid.Row>
+        <Grid.Row>
           <Form>
-            <Form.Group>
-              <Form.Field>
-                <label>Profile Picture</label>
-                <input defaultValue={this.accountData.image}/>
-              </Form.Field>
-            </Form.Group>
+            <Form.Field>
+              <label>Profile Picture</label>
+              <input defaultValue={this.accountData.image}/>
+            </Form.Field>
             <Form.Group>
               <Form.Field>
                 <label>Username</label>
@@ -42,19 +44,17 @@ export default class User extends React.Component {
               <Form.Field label='4' control='input' type='radio' name='surfing ability' defaultChecked={this.accountData.ability === '4'}/>
               <Form.Field label='5' control='input' type='radio' name='surfing ability' defaultChecked={this.accountData.ability === '5'}/>
             </Form.Group>
-            <Form.Group>
-              <Form.Field>
-                <label>Location</label>
-                <input defaultValue={this.accountData.location}/>
-              </Form.Field>
-            </Form.Group>
+            <Form.Field>
+              <label>Location</label>
+              <input defaultValue={this.accountData.location}/>
+            </Form.Field>
             <Button.Group>
               <Button positive>Update Account</Button>
               <Button.Or/>
               <Button negative>Delete Account</Button>
             </Button.Group>
           </Form>
-        </Grid.Column>
+        </Grid.Row>
       </Grid>
     );
   }
