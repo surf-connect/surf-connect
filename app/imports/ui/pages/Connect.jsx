@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Card, Header, Divider, Form, Radio } from 'semantic-ui-react';
+import { Container, Card, Header, Divider, Form, Radio, Dropdown, Feed } from 'semantic-ui-react';
 import UserDisplay from '../components/UserDisplay';
+import Message from '../components/Message';
 
 export default class Connect extends React.Component {
 
@@ -28,7 +29,29 @@ export default class Connect extends React.Component {
     },
   ]
 
+  messages=[
+    {
+      sender: 'User 2',
+      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      receiver: 'User 1',
+      message: 'Yo whats up? Wanna surf today?',
+    },
+    {
+      sender: 'User 3',
+      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      receiver: 'User 1',
+      message: 'You down to surf?',
+    },
+  ]
+
   render() {
+    const messageStyle = {
+      position: 'fixed',
+      bottom: '100px',
+      right: '60px',
+      width: '200px',
+    };
+
     return (
       <Container>
         <Header>Users Connected By Time and Surfing Ability</Header>
@@ -43,6 +66,13 @@ export default class Connect extends React.Component {
         <Card.Group>
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
+        <div style={messageStyle}>
+          <Dropdown icon='huge chat'>
+            <Dropdown.Menu>
+              {this.messages.map(message => <Message key={message.message} message={message} />)}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
         <Divider />
         <Header>Filters:</Header>
         <Form>
