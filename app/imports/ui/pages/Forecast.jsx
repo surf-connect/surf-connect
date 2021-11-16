@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Image, Header } from 'semantic-ui-react';
 
-export default class User extends React.Component {
+export default class Forecast extends React.Component {
 
   forecastData = [
     {
