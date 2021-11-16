@@ -21,31 +21,31 @@ export default class User extends React.Component {
             <Form.Group>
               <Form.Field>
                 <label>Profile Picture</label>
-                <input value={this.accountData.image}/>
+                <input defaultValue={this.accountData.image}/>
               </Form.Field>
             </Form.Group>
             <Form.Group>
               <Form.Field>
                 <label>Username</label>
-                <input value={this.accountData.name}/>
+                <input defaultValue={this.accountData.name}/>
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
-                <input type='password' value={this.accountData.password}/>
+                <input type='password' defaultValue={this.accountData.password}/>
               </Form.Field>
             </Form.Group>
             <Form.Group inline>
               <label>Surfing Ability:</label>
-              <Form.Field label='1' control='input' type='radio' name='surfing ability'/>
-              <Form.Field label='2' control='input' type='radio' name='surfing ability'/>
-              <Form.Field label='3' control='input' type='radio' name='surfing ability'/>
-              <Form.Field label='4' control='input' type='radio' name='surfing ability'/>
-              <Form.Field label='5' control='input' type='radio' name='surfing ability'/>
+              <Form.Field label='1' control='input' type='radio' name='surfing ability' defaultChecked={this.accountData.ability === '1'}/>
+              <Form.Field label='2' control='input' type='radio' name='surfing ability' defaultChecked={this.accountData.ability === '2'}/>
+              <Form.Field label='3' control='input' type='radio' name='surfing ability' defaultChecked={this.accountData.ability === '3'}/>
+              <Form.Field label='4' control='input' type='radio' name='surfing ability' defaultChecked={this.accountData.ability === '4'}/>
+              <Form.Field label='5' control='input' type='radio' name='surfing ability' defaultChecked={this.accountData.ability === '5'}/>
             </Form.Group>
             <Form.Group>
               <Form.Field>
                 <label>Location</label>
-                <input value={this.accountData.location}/>
+                <input defaultValue={this.accountData.location}/>
               </Form.Field>
             </Form.Group>
             <Button.Group>
