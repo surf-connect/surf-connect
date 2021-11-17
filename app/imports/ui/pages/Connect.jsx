@@ -67,7 +67,7 @@ export default class Connect extends React.Component {
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
-          <Dropdown icon='huge chat'>
+          <Dropdown text='Messages' icon='chat' floating labeled button className='icon'>
             <Dropdown.Menu>
               {this.messages.map(message => <Message key={message.message} message={message} />)}
             </Dropdown.Menu>
