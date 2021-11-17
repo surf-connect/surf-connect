@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Header, Divider, Form, Radio, Dropdown, Feed } from 'semantic-ui-react';
+import { Container, Card, Header, Divider, Form, Radio, Dropdown } from 'semantic-ui-react';
 import UserDisplay from '../components/UserDisplay';
 import Message from '../components/Message';
 
