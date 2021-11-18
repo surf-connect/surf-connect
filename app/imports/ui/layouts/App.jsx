@@ -29,7 +29,7 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/forecasts" component={Forecast}/>
+            <ProtectedRoute path="/locations" component={Forecast}/>
             <ProtectedRoute path="/connect" component={Connect}/>
             <ProtectedRoute path="/add" component={AddStuff}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
