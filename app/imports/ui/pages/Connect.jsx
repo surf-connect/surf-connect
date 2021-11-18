@@ -76,7 +76,7 @@ export default class Connect extends React.Component {
     const messageStyle = {
       position: 'fixed',
       bottom: '100px',
-      right: '100px',
+      right: '80px',
       width: '200px',
       zIndex: 2,
     };
