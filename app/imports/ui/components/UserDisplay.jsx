@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class UserDisplay extends React.Component {
   render() {
+    const descStyle = { height: '50px' };
     return (
       <Card>
         <Card.Content>
@@ -15,7 +16,7 @@ class UserDisplay extends React.Component {
         <Image src={this.props.user.image} />
         <Card.Content>
           <Card.Meta>{`Surf Ability Level: ${this.props.user.ability}`}</Card.Meta>
-          <Card.Description>{this.props.user.description}</Card.Description>
+          <Card.Description style={descStyle}>{this.props.user.description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
           <div className='two ui buttons'>
