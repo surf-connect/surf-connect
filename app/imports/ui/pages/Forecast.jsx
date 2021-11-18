@@ -90,7 +90,7 @@ export default class Forecast extends React.Component {
     return (
       <Container>
         <Header as='h1' textAlign='center'>Surf Spots on Oahu</Header>
-        <Table fixed>
+        <Table fixed inverted>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Location</Table.HeaderCell>
@@ -103,7 +103,7 @@ export default class Forecast extends React.Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {this.forecastData.map(location => <Table.Row style={ { backgroundImage: `url(${(location.image)})`, backgroundSize: 'cover', height: '200px', backgroundPosition: 'center', color: 'white' } } key={location.name}>
+            {this.forecastData.map(location => <Table.Row style={ { backgroundImage: `url(${(location.image)})`, backgroundSize: 'cover', height: '100px', backgroundPosition: 'center' } } key={location.name}>
               <Table.Cell>{location.name}</Table.Cell>
               <Table.Cell>{location.surf} ft+</Table.Cell>
               <Table.Cell>{location.tide} ft</Table.Cell>
