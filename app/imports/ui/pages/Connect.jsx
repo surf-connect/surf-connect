@@ -46,13 +46,6 @@ export default class Connect extends React.Component {
       ability: 2,
       description: 'Brooos! What up lets get pitted!',
     },
-    {
-      name: 'User 3',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      time: '8:00am',
-      ability: 2,
-      description: 'Brooos! What up lets get pitted!',
-    },
   ]
 
   messages=[
@@ -71,6 +64,9 @@ export default class Connect extends React.Component {
   ]
 
   render() {
+
+    // Sets CSS for header.
+    const headerStyle = { fontFamily: 'Original Surfer, cursive' };
 
     // Sets CSS for message button.
     const messageStyle = {
@@ -92,17 +88,17 @@ export default class Connect extends React.Component {
 
     return (
       <Container textAlign='center' >
-        <Header as='h3'>Users Connected By Time and Surfing Ability</Header>
+        <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
         <Divider />
         <Card.Group centered>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
-        <Header>Users Connected By Surfing Ability</Header>
+        <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group centered>
           {[this.users[0]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
-        <Header>Users Connected By Time</Header>
+        <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
         <Card.Group centered>
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}

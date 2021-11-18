@@ -1,3 +1,7 @@
 .menu .item{
   color: black !important;
 }
+
+#root {
+  font-family: 'Original Surfer', cursive !important;
+}

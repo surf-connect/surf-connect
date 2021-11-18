@@ -39,6 +39,10 @@ export default class Suggestions extends React.Component {
   ]
 
   render() {
+
+    // Sets CSS for header.
+    const headerStyle = { fontFamily: 'Original Surfer, cursive' };
+
     // Sets CSS for filters.
     const filterStyle = {
       position: 'absolute',
@@ -49,7 +53,7 @@ export default class Suggestions extends React.Component {
     };
     return (
       <Container textAlign='center'>
-        <Header as='h1'>Surf Suggestions</Header>
+        <Header as='h1' style={headerStyle}>Surf Suggestions</Header>
         <Divider />
         <Feed>
           {this.suggestions.map(suggestion => <SurfSuggestion key={suggestion.name} suggestion={suggestion} />)}
