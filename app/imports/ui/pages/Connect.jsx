@@ -46,6 +46,13 @@ export default class Connect extends React.Component {
       ability: 2,
       description: 'Brooos! What up lets get pitted!',
     },
+    {
+      name: 'User 3',
+      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      time: '8:00am',
+      ability: 2,
+      description: 'Brooos! What up lets get pitted!',
+    },
   ]
 
   messages=[
@@ -69,32 +76,35 @@ export default class Connect extends React.Component {
     const messageStyle = {
       position: 'fixed',
       bottom: '100px',
-      right: '60px',
+      right: '100px',
       width: '200px',
       zIndex: 2,
     };
 
-    // Sets CSS for Filters.
+    // Sets CSS for filters.
     const filterStyle = {
-      position: 'fixed',
-      top: '95px',
-      right: '60px',
+      position: 'absolute',
+      top: '93px',
+      left: '-90px',
       width: '300px',
       zIndex: 1,
     };
 
     return (
-      <Container>
-        <Header as='h1'>Users Connected By Time and Surfing Ability</Header>
-        <Card.Group>
+      <Container textAlign='center' >
+        <Header as='h3'>Users Connected By Time and Surfing Ability</Header>
+        <Divider />
+        <Card.Group centered>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <Header>Users Connected By Surfing Ability</Header>
-        <Card.Group>
+        <Divider />
+        <Card.Group centered>
           {[this.users[0]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <Header>Users Connected By Time</Header>
-        <Card.Group>
+        <Divider />
+        <Card.Group centered>
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
@@ -105,15 +115,19 @@ export default class Connect extends React.Component {
           </Dropdown>
         </div>
         <div style={filterStyle}>
-          <Segment>
-            <Header>Filters:</Header>
-            <Divider />
-            <AutoForm schema={bridge}>
-              <SelectField name='ability' />
-              <SelectField name='time' />
-              <SubmitField />
-            </AutoForm>
-          </Segment>
+          <Dropdown text='Filters'>
+            <Dropdown.Menu>
+              <Segment>
+                <Header>Filters:</Header>
+                <Divider />
+                <AutoForm schema={bridge}>
+                  <SelectField name='ability' />
+                  <SelectField name='time' />
+                  <SubmitField />
+                </AutoForm>
+              </Segment>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
       </Container>
     );
