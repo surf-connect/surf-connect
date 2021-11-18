@@ -1,6 +1,26 @@
 import React from 'react';
-import { Container, Card, Header, Divider, Form, Radio } from 'semantic-ui-react';
+import { Container, Card, Header, Divider, Dropdown, Segment } from 'semantic-ui-react';
+import SimpleSchema from 'simpl-schema';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
 import UserDisplay from '../components/UserDisplay';
+import Message from '../components/Message';
+
+const formSchema = new SimpleSchema({
+  ability: {
+    type: Number,
+    allowedValues: [1, 2, 3, 4, 5],
+    defaultValue: 1,
+  },
+  time: {
+    type: String,
+    allowedValues: ['12:00am', '1:00am', '2:00am', '3:00am', '4:00am', '5:00am', '6:00am', '7:00am', '8:00am', '9:00am',
+      '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am'],
+    defaultValue: '12:00am',
+  },
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
 
 export default class Connect extends React.Component {
 
@@ -28,37 +48,83 @@ export default class Connect extends React.Component {
     },
   ]
 
+  messages=[
+    {
+      sender: 'User 2',
+      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      receiver: 'User 1',
+      message: 'Yo whats up? Wanna surf today?',
+    },
+    {
+      sender: 'User 3',
+      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      receiver: 'User 1',
+      message: 'You down to surf?',
+    },
+  ]
+
   render() {
+
+    // Sets CSS for header.
+    const headerStyle = { fontFamily: 'Original Surfer, cursive' };
+
+    // Sets CSS for message button.
+    const messageStyle = {
+      position: 'fixed',
+      bottom: '100px',
+      right: '80px',
+      width: '200px',
+      zIndex: 2,
+    };
+
+    // Sets CSS for filters.
+    const filterStyle = {
+      position: 'absolute',
+      top: '93px',
+      left: '-90px',
+      width: '300px',
+      zIndex: 1,
+    };
+
     return (
-      <Container>
-        <Header>Users Connected By Time and Surfing Ability</Header>
-        <Card.Group>
+      <Container textAlign='center' >
+        <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
+        <Divider />
+        <Card.Group centered>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
-        <Header>Users Connected By Surfing Ability</Header>
-        <Card.Group>
+        <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
+        <Divider />
+        <Card.Group centered>
           {[this.users[0]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
-        <Header>Users Connected By Time</Header>
-        <Card.Group>
+        <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
+        <Divider />
+        <Card.Group centered>
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
-        <Divider />
-        <Header>Filters:</Header>
-        <Form>
-          <Form.Group>
-            <label>Surfing Ability:</label>
-            <Form.Field control={Radio} name='ability' label='1' value='1' />
-            <Form.Field control={Radio} name='ability' label='2' value='2' />
-            <Form.Field control={Radio} name='ability' label='3' value='3' />
-            <Form.Field control={Radio} name='ability' label='4' value='4' />
-            <Form.Field control={Radio} name='ability' label='5' value='5' />
-          </Form.Group>
-          <Form.Group>
-            <label>Time You Would Like to Surf:</label>
-            <Form.Select placeholder='Time' />
-          </Form.Group>
-        </Form>
+        <div style={messageStyle}>
+          <Dropdown text='Messages' icon='chat' floating labeled button className='icon'>
+            <Dropdown.Menu>
+              {this.messages.map(message => <Message key={message.message} message={message} />)}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        <div style={filterStyle}>
+          <Dropdown text='Filters'>
+            <Dropdown.Menu>
+              <Segment>
+                <Header>Filters:</Header>
+                <Divider />
+                <AutoForm schema={bridge}>
+                  <SelectField name='ability' />
+                  <SelectField name='time' />
+                  <SubmitField />
+                </AutoForm>
+              </Segment>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </Container>
     );
   }

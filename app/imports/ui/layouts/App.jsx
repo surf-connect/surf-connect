@@ -13,6 +13,7 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import User from '../pages/User';
 import Connect from '../pages/Connect';
 import Suggestions from '../pages/Suggestions';
 
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route path="/signout" component={Signout}/>
             <Route path="/connect" component={Connect}/>
             <Route path="/suggestions" component={Suggestions}/>
+            <ProtectedRoute path="/user" component={User}/>
             <ProtectedRoute path="/add" component={AddStuff}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
