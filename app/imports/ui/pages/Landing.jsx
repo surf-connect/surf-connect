@@ -12,7 +12,7 @@ class Landing extends React.Component {
         <Grid columns={3}>
           <Grid.Column/>
           <Grid.Column>
-            <Header as={'h3'} id={'intro'}>Are you new to surfing and don&apos;t know where to start? Or are you just looking for a surfing buddy to try out a new spot? </Header>
+            <Header as={'h3'} id={'intro'}>Are you new to surfing and don&apos;t know where to start? Or are you just looking for a surfing buddy to try out a new spot? Use Surf Connect to link with other surfers who can teach you how to surf or who are also looking for a surfing buddy, or both!</Header>
           </Grid.Column>
           <Grid.Column/>
         </Grid>
