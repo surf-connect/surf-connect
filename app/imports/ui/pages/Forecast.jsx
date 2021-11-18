@@ -49,7 +49,7 @@ export default class Forecast extends React.Component {
       image: 'https://www.aloha-hawaii.com/wp-content/uploads/2010/07/haleiwa-beach-park.jpg',
       surf: '4-6',
       tide: '0.2',
-      wind: '3 SSW',
+      wind: '3',
       swells: '3.8',
       wTemp: '77-79',
       weather: '77',
