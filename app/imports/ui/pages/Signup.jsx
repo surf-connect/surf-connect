@@ -42,8 +42,8 @@ class Signup extends React.Component {
       <Container id="signup-page">
         <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
           <Grid.Column>
-            <Header as="h2" textAlign="center">
-              Register your account
+            <Header id={'root'} as="h2" textAlign="center">
+              Sign up to Surf Connect
             </Header>
             <Form onSubmit={this.submit}>
               <Segment stacked>
