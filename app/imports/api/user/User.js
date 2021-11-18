@@ -33,4 +33,4 @@ class UserCollection {
   }
 }
 
-export const Stuffs = new UserCollection();
+export const Users = new UserCollection();
