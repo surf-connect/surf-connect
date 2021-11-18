@@ -6,33 +6,35 @@ import { NavLink } from 'react-router-dom';
 class Landing extends React.Component {
   render() {
     return (
-      <Container textAlign={'center'} >
-        <Header id={'landing-font'} as={'h1'}>Welcome to Surf Connect!</Header>
-        <br/>
-        <br/>
-        <Grid.Row>
-          <Grid columns={3}>
-            <Grid.Column/>
-            <Grid.Column>
-              {/* eslint-disable-next-line max-len */}
-              <Header as={'h3'} id={'root'} >Are you new to surfing and don&apos;t know where to start? Or are you just looking for a surfing buddy to try out a new spot? Use Surf Connect to link with other surfers who can teach you how to surf or who are also looking for a surfing buddy!</Header>
-            </Grid.Column>
-            <Grid.Column/>
-          </Grid>
-        </Grid.Row>
-        <br/>
-        <br/>
-        <Grid.Row>
-          <Grid columns={3}>
-            <Grid.Column/>
-            <Grid.Column>
-              <Button as={NavLink} to={'/signup'}>Sign Up</Button>
-              <Button as={NavLink} to={'/signin'}>Sign In</Button>
-            </Grid.Column>
-            <Grid.Column/>
-          </Grid>
-        </Grid.Row>
-      </Container>
+      <div id={'landing'}>
+        <Container textAlign={'center'} >
+          <Header as={'h1'}>Welcome to Surf Connect!</Header>
+          <br/>
+          <br/>
+          <Grid.Row>
+            <Grid columns={3}>
+              <Grid.Column/>
+              <Grid.Column>
+                {/* eslint-disable-next-line max-len */}
+                <Header as={'h3'} id={'root'} >Are you new to surfing and don&apos;t know where to start? Or are you just looking for a surfing buddy to try out a new spot? Use Surf Connect to link with other surfers who can teach you how to surf or who are also looking for a surfing buddy!</Header>
+              </Grid.Column>
+              <Grid.Column/>
+            </Grid>
+          </Grid.Row>
+          <br/>
+          <br/>
+          <Grid.Row>
+            <Grid columns={3}>
+              <Grid.Column/>
+              <Grid.Column>
+                <Button as={NavLink} to={'/signup'}>Sign Up</Button>
+                <Button as={NavLink} to={'/signin'}>Sign In</Button>
+              </Grid.Column>
+              <Grid.Column/>
+            </Grid>
+          </Grid.Row>
+        </Container>
+      </div>
     );
   }
 }
