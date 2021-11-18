@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Header, Form, Button, Image } from 'semantic-ui-react';
+import { Grid, Header, Form, Button, Image, Input, Confirm } from 'semantic-ui-react';
 
 export default class User extends React.Component {
 
@@ -9,31 +9,38 @@ export default class User extends React.Component {
     image: 'https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg',
     ability: '1',
     location: 'Waikiki',
+    description: 'Hello',
   };
+
+  state = { open: false }
+
+  open = () => this.setState({ open: true })
+
+  close = () => this.setState({ open: false })
 
   render() {
     return (
       <Grid container centered>
         <Grid.Row>
-          <Header as="h2" textAlign="center">Edit Profile</Header>
+          <Header as="h1" textAlign="center">Edit Profile</Header>
         </Grid.Row>
         <Grid.Row>
-          <Image src={this.accountData.image} size='small'/>
+          <Image src={this.accountData.image} size='small' avatar/>
         </Grid.Row>
         <Grid.Row>
           <Form>
             <Form.Field>
               <label>Profile Picture</label>
-              <input defaultValue={this.accountData.image}/>
+              <Input defaultValue={this.accountData.image}/>
             </Form.Field>
             <Form.Group>
               <Form.Field>
-                <label>Username</label>
-                <input defaultValue={this.accountData.name}/>
+                <label>Email</label>
+                <Input defaultValue={this.accountData.name}/>
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
-                <input type='password' defaultValue={this.accountData.password}/>
+                <Input type='password' defaultValue={this.accountData.password}/>
               </Form.Field>
             </Form.Group>
             <Form.Group inline>
@@ -46,12 +53,21 @@ export default class User extends React.Component {
             </Form.Group>
             <Form.Field>
               <label>Location</label>
-              <input defaultValue={this.accountData.location}/>
+              <Input defaultValue={this.accountData.location}/>
             </Form.Field>
+            <Form.TextArea label='Description' defaultValue={this.accountData.description}/>
             <Button.Group>
-              <Button positive>Update Account</Button>
+              <div>
+                <Button positive>Update Profile</Button>
+              </div>
               <Button.Or/>
-              <Button negative>Delete Account</Button>
+              <div>
+                <Button negative onClick={this.open}>Delete Profile</Button>
+                <Confirm
+                  open={this.state.open}
+                  onCancel={this.close}
+                  onConfirm={this.close}/>
+              </div>
             </Button.Group>
           </Form>
         </Grid.Row>
