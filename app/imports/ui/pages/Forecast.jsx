@@ -93,13 +93,13 @@ export default class Forecast extends React.Component {
         <Table fixed>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell><Header as='h3'>Location</Header></Table.HeaderCell>
-              <Table.HeaderCell><Header as='h3'>Surf Height</Header></Table.HeaderCell>
-              <Table.HeaderCell><Header as='h3'>Tide</Header></Table.HeaderCell>
-              <Table.HeaderCell><Header as='h3'>Wind</Header></Table.HeaderCell>
-              <Table.HeaderCell><Header as='h3'>Swells</Header></Table.HeaderCell>
-              <Table.HeaderCell><Header as='h3'>Water Temp</Header></Table.HeaderCell>
-              <Table.HeaderCell><Header as='h3'>Weather</Header></Table.HeaderCell>
+              <Table.HeaderCell>Location</Table.HeaderCell>
+              <Table.HeaderCell>Surf Height</Table.HeaderCell>
+              <Table.HeaderCell>Tide</Table.HeaderCell>
+              <Table.HeaderCell>Wind</Table.HeaderCell>
+              <Table.HeaderCell>Swells</Table.HeaderCell>
+              <Table.HeaderCell>Water Temp</Table.HeaderCell>
+              <Table.HeaderCell>Weather</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
