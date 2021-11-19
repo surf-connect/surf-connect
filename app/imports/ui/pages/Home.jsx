@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Divider, Feed, Header, Segment, Dropdown, Grid, Card } from 'semantic-ui-react';
+import { Container, Divider, Feed, Header, Segment, Dropdown, Grid, Card, Table } from 'semantic-ui-react';
 import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -89,7 +89,7 @@ export default class Home extends React.Component {
   render() {
 
     // Sets CSS for header.
-    const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '50px' };
+    const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '50px', marginBottom: '50px' };
 
     // Sets CSS for filters.
     return (
@@ -109,8 +109,32 @@ export default class Home extends React.Component {
         <Card.Group centered>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
-        <Header as='h1' style={headerStyle}>Top picks for the day</Header>
+        <Header as='h1' style={headerStyle}>Today&apos;s overview</Header>
         <Divider />
+        <Table fixed inverted size='large'>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Location</Table.HeaderCell>
+              <Table.HeaderCell>Surf Height</Table.HeaderCell>
+              <Table.HeaderCell>Tide</Table.HeaderCell>
+              <Table.HeaderCell>Wind</Table.HeaderCell>
+              <Table.HeaderCell>Swells</Table.HeaderCell>
+              <Table.HeaderCell>Water Temp</Table.HeaderCell>
+              <Table.HeaderCell>Weather</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {this.forecastData.map(location => <Table.Row style={ { backgroundImage: `url(${(location.image)})`, backgroundSize: 'cover', height: '100px', backgroundPosition: 'center' } } key={location.name}>
+              <Table.Cell>{location.name}</Table.Cell>
+              <Table.Cell>{location.surf} ft+</Table.Cell>
+              <Table.Cell>{location.tide} ft</Table.Cell>
+              <Table.Cell>{location.wind} kts</Table.Cell>
+              <Table.Cell>{location.swells} ft</Table.Cell>
+              <Table.Cell>{location.wTemp} &deg;F</Table.Cell>
+              <Table.Cell>{location.weather} &deg;F</Table.Cell>
+            </Table.Row>)}
+          </Table.Body>
+        </Table>
       </Container>
     );
   }
