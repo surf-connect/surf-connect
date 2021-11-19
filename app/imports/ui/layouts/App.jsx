@@ -16,6 +16,7 @@ import Signout from '../pages/Signout';
 import User from '../pages/User';
 import Connect from '../pages/Connect';
 import Suggestions from '../pages/Suggestions';
+import Home from '../pages/Home';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route exact path="/" component={Landing}/>
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
+            <Route path="/home" component={Home}/>
             <Route path="/signout" component={Signout}/>
             <Route path="/connect" component={Connect}/>
             <Route path="/suggestions" component={Suggestions}/>
