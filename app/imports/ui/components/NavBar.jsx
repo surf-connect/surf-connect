@@ -13,9 +13,11 @@ class NavBar extends React.Component {
     const headerStyle = { fontFamily: 'Original Surfer, cursive' };
     return (
       <Menu style={menuStyle} attached="top" borderless inverted>
-        <Menu.Item as={NavLink} activeClassName="" exact to="/">
+        {this.props.currentUser ? (<Menu.Item as={NavLink} activeClassName="" exact to="/home">
           <Header inverted as='h2' style={headerStyle}>Surf Connect</Header>
-        </Menu.Item>
+        </Menu.Item>) : (<Menu.Item as={NavLink} activeClassName="" exact to="/">
+          <Header inverted as='h2' style={headerStyle}>Surf Connect</Header>
+        </Menu.Item>)}
         {this.props.currentUser ? (
           [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
             <Menu.Item as={NavLink} activeClassName="active" exact to="/locations" key='locations'>Surf Locations</Menu.Item>,
