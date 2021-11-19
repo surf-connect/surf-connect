@@ -5,13 +5,14 @@ import { NavLink } from 'react-router-dom';
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
+    const style = { marginTop: '200px' };
     return (
       <div id={'landing'}>
         <Container textAlign={'center'} >
-          <Header as={'h1'}>Welcome to Surf Connect!</Header>
+          <Header id={'landing-h1'} as={'h1'}>Welcome to Surf Connect!</Header>
           <br/>
           <br/>
-          <Grid.Row>
+          <Grid.Row style={style}>
             <Grid columns={3}>
               <Grid.Column/>
               <Grid.Column>

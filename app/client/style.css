@@ -5,12 +5,11 @@
 
 #landing{
   font-family: 'Original Surfer', cursive;
-  font-size: 50px;
-  background-image: url("../images/surfer-g3f2616b85_1920.jpg");
+  font-size: 80px;
+  background-image: url("../images/surfers.jpg");
   background-size: cover;
-  background-position: 30% 50%;
-
-  height: 500px;
+  background-position: 50% 50%;
+  height: 1000px;
 }
 
 #intro{
@@ -19,4 +18,9 @@
 
 #root {
   font-family: 'Original Surfer', cursive !important;
+}
+
+#landing-h1{
+  font-family: 'Original Surfer', cursive;
+  font-size: 70px;
 }
