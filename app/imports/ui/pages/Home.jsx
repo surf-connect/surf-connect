@@ -53,6 +53,39 @@ export default class Home extends React.Component {
     },
   ]
 
+  forecastData = [
+    {
+      name: 'Pipeline',
+      image: 'https://media-cdn.tripadvisor.com/media/photo-s/16/fc/15/cf/beach.jpg',
+      surf: '6-8',
+      tide: '0.2',
+      wind: '2',
+      swells: '3.8',
+      wTemp: '77-79',
+      weather: '77',
+    },
+    {
+      name: 'Waimea Bay',
+      image: 'https://www.best-of-oahu.com/images/xWaimea-Bay-Hawaii.jpg.pagespeed.ic.yfWUlSbrXr.jpg',
+      surf: '6-8',
+      tide: '0.2',
+      wind: '2',
+      swells: '3.8',
+      wTemp: '77-79',
+      weather: '77',
+    },
+    {
+      name: 'Barbers Point',
+      image: 'https://media-cdn.tripadvisor.com/media/photo-s/16/d5/d8/fc/beach.jpg',
+      surf: '2-3',
+      tide: '0.9',
+      wind: '8',
+      swells: '1.3',
+      wTemp: '77-79',
+      weather: '78',
+    },
+  ]
+
   render() {
 
     // Sets CSS for header.
@@ -76,6 +109,8 @@ export default class Home extends React.Component {
         <Card.Group centered>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
+        <Header as='h1' style={headerStyle}>Top picks for the day</Header>
+        <Divider />
       </Container>
     );
   }
