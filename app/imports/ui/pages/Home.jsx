@@ -1,8 +1,5 @@
 import React from 'react';
-import { Container, Divider, Feed, Header, Segment, Dropdown, Grid, Card } from 'semantic-ui-react';
-import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
-import SimpleSchema from 'simpl-schema';
-import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { Container, Divider, Feed, Header, Grid, Card } from 'semantic-ui-react';
 import SurfSuggestion from '../components/SurfSuggestion';
 import UserDisplay from '../components/UserDisplay';
 
