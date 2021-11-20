@@ -1,8 +1,12 @@
 import React from 'react';
-import { Container, Card, Header, Divider, Dropdown, Segment } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
+import { Container, Card, Header, Divider, Dropdown, Segment, Loader } from 'semantic-ui-react';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Messages } from '../../api/message/Message';
 import UserDisplay from '../components/UserDisplay';
 import Message from '../components/Message';
 
@@ -22,7 +26,7 @@ const formSchema = new SimpleSchema({
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-export default class Connect extends React.Component {
+class Connect extends React.Component {
 
   users=[
     {
@@ -46,24 +50,14 @@ export default class Connect extends React.Component {
       ability: 2,
       description: 'Brooos! What up lets get pitted!',
     },
-  ]
+  ];
 
-  messages=[
-    {
-      sender: 'User 2',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      receiver: 'User 1',
-      message: 'Yo whats up? Wanna surf today?',
-    },
-    {
-      sender: 'User 3',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      receiver: 'User 1',
-      message: 'You down to surf?',
-    },
-  ]
-
+  // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  renderPage() {
 
     // Sets CSS for header.
     const headerStyle = { fontFamily: 'Original Surfer, cursive' };
@@ -129,3 +123,23 @@ export default class Connect extends React.Component {
     );
   }
 }
+
+// Require an array of Stuff documents in the props.
+Connect.propTypes = {
+  messages: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe(Messages.userPublicationName);
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  // Get the Message documents
+  const messages = Messages.collection.find({}).fetch();
+  return {
+    messages,
+    ready,
+  };
+})(Connect);
