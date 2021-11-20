@@ -1,22 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Stuffs } from '../../api/stuff/Stuff';
-import { Users } from '../../api/user/User';
-
-Meteor.publish(Users.userPublicationName, function () {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Users.collection.find({ owner: username });
-  }
-  return this.ready();
-});
-
-Meteor.publish(Users.adminPublicationName, function () {
-  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Users.collection.find();
-  }
-  return this.ready();
-});
+import { Messages } from '../../api/message/Message';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
@@ -42,6 +27,22 @@ Meteor.publish(Stuffs.adminPublicationName, function () {
 Meteor.publish(null, function () {
   if (this.userId) {
     return Meteor.roleAssignment.find({ 'user._id': this.userId });
+  }
+  return this.ready();
+});
+
+Meteor.publish(Messages.userPublicationName, function () {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    // Finds all Messages that were sent to the user.
+    return Messages.collection.find({ receiver: username });
+  }
+  return this.ready();
+});
+
+Meteor.publish(Messages.adminPublicationName, function () {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    return Messages.collection.find();
   }
   return this.ready();
 });

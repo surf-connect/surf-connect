@@ -9,13 +9,15 @@ import { Roles } from 'meteor/alanning:roles';
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {
-    const menuStyle = { marginBottom: '10px', backgroundImage: 'url(../images/ocean2.jpg)', backgroundPosition: '50% 80%', backgroundSize: 'cover', fontFamily: 'Original Surfer, cursive' };
+    const menuStyle = { height: '60px', marginBottom: '0px', backgroundImage: 'url(../images/ocean2.jpg)', backgroundPosition: '50% 80%', backgroundSize: 'cover', fontFamily: 'Original Surfer, cursive' };
     const headerStyle = { fontFamily: 'Original Surfer, cursive' };
     return (
       <Menu style={menuStyle} attached="top" borderless inverted>
-        <Menu.Item as={NavLink} activeClassName="" exact to="/">
+        {this.props.currentUser ? (<Menu.Item as={NavLink} activeClassName="" exact to="/home">
           <Header inverted as='h2' style={headerStyle}>Surf Connect</Header>
-        </Menu.Item>
+        </Menu.Item>) : (<Menu.Item as={NavLink} activeClassName="" exact to="/">
+          <Header inverted as='h2' style={headerStyle}>Surf Connect</Header>
+        </Menu.Item>)}
         {this.props.currentUser ? (
           [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
             <Menu.Item as={NavLink} activeClassName="active" exact to="/locations" key='locations'>Surf Locations</Menu.Item>,
@@ -36,6 +38,7 @@ class NavBar extends React.Component {
           ) : (
             <Dropdown id="navbar-current-user" text={this.props.currentUser} pointing="top right" icon={'user'}>
               <Dropdown.Menu>
+                <Dropdown.Item id="navbar-user-page" icon="user" text='My Profile' as={NavLink} exact to="/user"/>
                 <Dropdown.Item id="navbar-sign-out" icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
               </Dropdown.Menu>
             </Dropdown>

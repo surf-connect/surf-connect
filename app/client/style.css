@@ -1,7 +1,26 @@
 .menu .item{
   color: black !important;
+  font-size: 18px;
+}
+
+#landing{
+  font-family: 'Original Surfer', cursive;
+  font-size: 80px;
+  background-image: url("../images/surfers.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 1000px;
+}
+
+#intro{
+  font-size: 18px;
 }
 
 #root {
   font-family: 'Original Surfer', cursive !important;
+}
+
+#landing-h1{
+  font-family: 'Original Surfer', cursive;
+  font-size: 70px;
 }

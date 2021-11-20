@@ -4,6 +4,10 @@
     "appSecret": "abb8f556-32e9-4916-9032-1d2a49ddcf1b"
   },
 
+  "defaultMessages": [
+    { "sender": "user1", "receiver": "john@foo.com", "image": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80", "message": "Whats up bro!" }
+  ],
+
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" }
