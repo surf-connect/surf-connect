@@ -2,10 +2,10 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
-class UserCollection {
+class UsersCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'UserCollection';
+    this.name = 'UsersCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
@@ -24,6 +24,7 @@ class UserCollection {
         allowedValues: [1, 2, 3, 4, 5],
         defaultValue: 1,
       },
+      owner: String,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
@@ -33,4 +34,4 @@ class UserCollection {
   }
 }
 
-export const Users = new UserCollection();
+export const Users = new UsersCollection();

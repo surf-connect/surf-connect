@@ -13,6 +13,11 @@
     { "email": "john@foo.com", "password": "changeme" }
   ],
 
+  "defaultUsers": [
+    { "name": "Admin", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello", "time": "12:00pm", "ability": 1, "owner": "admin@foo.com" },
+    { "name": "John", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello, my name is John", "time": "3:00pm", "ability": 4, "owner": "john@foo.com" }
+  ],
+
   "defaultData": [
     { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
