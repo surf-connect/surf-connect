@@ -1,17 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Header, Form, Button, Image, Input, Confirm, Loader } from 'semantic-ui-react';
+import { Grid, Header, Form, Button, Image, Input, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Users } from '../../api/user/Users';
 
 class User extends React.Component {
-
-  state = { open: false }
-
-  open = () => this.setState({ open: true })
-
-  close = () => this.setState({ open: false })
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -48,7 +43,7 @@ class User extends React.Component {
     return (
       <Grid container centered>
         <Grid.Row>
-          <Header as="h1" textAlign="center">Edit Profile</Header>
+          <Header as="h1" textAlign="center">My Profile</Header>
         </Grid.Row>
         <Grid.Row>
           <Image src={this.props.userInfo[0].image} size='small' avatar/>
@@ -57,37 +52,34 @@ class User extends React.Component {
           <Form>
             <Form.Field>
               <label>Profile Picture</label>
-              <Input defaultValue={this.props.userInfo[0].image}/>
+              <Input defaultValue={this.props.userInfo[0].image} disabled/>
             </Form.Field>
             <Form.Field>
               <label>Name</label>
-              <Input defaultValue={this.props.userInfo[0].name}/>
+              <Input defaultValue={this.props.userInfo[0].name} disabled/>
             </Form.Field>
             <Form.Select
               label='Preferred Time'
               options={timeOptions}
               defaultValue={this.props.userInfo[0].time}
+              disabled
             />
             <Form.Group inline>
               <label>Surfing Ability:</label>
-              <Form.Field label='1' control='input' type='radio' name='surfing ability' defaultChecked={this.props.userInfo[0].ability === 1}/>
-              <Form.Field label='2' control='input' type='radio' name='surfing ability' defaultChecked={this.props.userInfo[0].ability === 2}/>
-              <Form.Field label='3' control='input' type='radio' name='surfing ability' defaultChecked={this.props.userInfo[0].ability === 3}/>
-              <Form.Field label='4' control='input' type='radio' name='surfing ability' defaultChecked={this.props.userInfo[0].ability === 4}/>
-              <Form.Field label='5' control='input' type='radio' name='surfing ability' defaultChecked={this.props.userInfo[0].ability === 5}/>
+              <Form.Field label='1' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 1} disabled/>
+              <Form.Field label='2' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 2} disabled/>
+              <Form.Field label='3' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 3} disabled/>
+              <Form.Field label='4' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 4} disabled/>
+              <Form.Field label='5' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 5} disabled/>
             </Form.Group>
-            <Form.TextArea label='Description' defaultValue={this.props.userInfo[0].description}/>
+            <Form.TextArea label='Description' defaultValue={this.props.userInfo[0].description} disabled/>
             <Button.Group>
               <div>
-                <Button positive>Update Profile</Button>
+                <Button positive as={NavLink} to={`/edit/${this.props.userInfo[0]._id}`}>Edit Profile</Button>
               </div>
               <Button.Or/>
               <div>
-                <Button negative onClick={this.open}>Delete Profile</Button>
-                <Confirm
-                  open={this.state.open}
-                  onCancel={this.close}
-                  onConfirm={this.close}/>
+                <Button negative>Delete Profile</Button>
               </div>
             </Button.Group>
           </Form>

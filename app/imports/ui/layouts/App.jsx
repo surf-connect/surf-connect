@@ -18,6 +18,8 @@ import Connect from '../pages/Connect';
 import Forecast from '../pages/Forecast';
 import Suggestions from '../pages/Suggestions';
 import Home from '../pages/Home';
+import AddUserInfo from '../pages/AddUserInfo';
+import EditUserInfo from '../pages/EditUserInfo';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -36,8 +38,8 @@ class App extends React.Component {
             <Route path="/connect" component={Connect}/>
             <Route path="/suggestions" component={Suggestions}/>
             <ProtectedRoute path="/user" component={User}/>
-            <ProtectedRoute path="/add" component={AddStuff}/>
-            <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+            <ProtectedRoute path="/add" component={AddUserInfo}/>
+            <ProtectedRoute path="/edit/:_id" component={EditUserInfo}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <Route component={NotFound}/>
           </Switch>
