@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Header, Form, Button, Image, Input, Loader } from 'semantic-ui-react';
+import { Grid, Header, Image, Table, Button, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -14,76 +14,48 @@ class User extends React.Component {
   }
 
   renderPage() {
-    const timeOptions = [
-      { key: '12:00am', text: '12:00am', value: '12:00am' },
-      { key: '1:00am', text: '1:00am', value: '1:00am' },
-      { key: '2:00am', text: '2:00am', value: '2:00am' },
-      { key: '3:00am', text: '3:00am', value: '3:00am' },
-      { key: '4:00am', text: '4:00am', value: '4:00am' },
-      { key: '5:00am', text: '5:00am', value: '5:00am' },
-      { key: '6:00am', text: '6:00am', value: '6:00am' },
-      { key: '7:00am', text: '7:00am', value: '7:00am' },
-      { key: '8:00am', text: '8:00am', value: '8:00am' },
-      { key: '9:00am', text: '9:00am', value: '9:00am' },
-      { key: '10:00am', text: '10:00am', value: '10:00am' },
-      { key: '11:00am', text: '11:00am', value: '11:00am' },
-      { key: '12:00pm', text: '12:00pm', value: '12:00pm' },
-      { key: '1:00pm', text: '1:00pm', value: '1:00pm' },
-      { key: '2:00pm', text: '2:00pm', value: '2:00pm' },
-      { key: '3:00pm', text: '3:00pm', value: '3:00pm' },
-      { key: '4:00pm', text: '4:00pm', value: '4:00pm' },
-      { key: '5:00pm', text: '5:00pm', value: '5:00pm' },
-      { key: '6:00pm', text: '6:00pm', value: '6:00pm' },
-      { key: '7:00pm', text: '7:00pm', value: '7:00pm' },
-      { key: '8:00pm', text: '8:00pm', value: '8:00pm' },
-      { key: '9:00pm', text: '9:00pm', value: '9:00pm' },
-      { key: '10:00pm', text: '10:00pm', value: '10:00pm' },
-      { key: '11:00pm', text: '11:00pm', value: '11:00pm' },
-    ];
     return (
       <Grid container centered>
         <Grid.Row>
-          <Header as="h1" textAlign="center">My Profile</Header>
+          <Header as='h1' textAlign='center'>My Profile</Header>
         </Grid.Row>
         <Grid.Row>
-          <Image src={this.props.userInfo[0].image} size='small' avatar/>
+          <Image size='medium' src={this.props.userInfo[0].image} avatar/>
         </Grid.Row>
         <Grid.Row>
-          <Form>
-            <Form.Field>
-              <label>Profile Picture</label>
-              <Input defaultValue={this.props.userInfo[0].image} disabled/>
-            </Form.Field>
-            <Form.Field>
-              <label>Name</label>
-              <Input defaultValue={this.props.userInfo[0].name} disabled/>
-            </Form.Field>
-            <Form.Select
-              label='Preferred Time'
-              options={timeOptions}
-              defaultValue={this.props.userInfo[0].time}
-              disabled
-            />
-            <Form.Group inline>
-              <label>Surfing Ability:</label>
-              <Form.Field label='1' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 1} disabled/>
-              <Form.Field label='2' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 2} disabled/>
-              <Form.Field label='3' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 3} disabled/>
-              <Form.Field label='4' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 4} disabled/>
-              <Form.Field label='5' control='input' type='radio' name='surfing ability' checked={this.props.userInfo[0].ability === 5} disabled/>
-            </Form.Group>
-            <Form.TextArea label='Description' defaultValue={this.props.userInfo[0].description} disabled/>
-            <Button.Group>
-              <div>
-                <Button positive as={NavLink} to={`/edit/${this.props.userInfo[0]._id}`}>Edit Profile</Button>
-              </div>
-              <Button.Or/>
-              <div>
-                <Button negative>Delete Profile</Button>
-              </div>
-            </Button.Group>
-          </Form>
+          <Header as='h2' textAlign='center'>{this.props.userInfo[0].name}</Header>
         </Grid.Row>
+        <Grid.Row>
+          <Table fixed celled striped>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell><Header as='h3'>Email</Header></Table.Cell>
+                <Table.Cell>{this.props.userInfo[0].owner}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell><Header as='h3'>Preferred Time</Header></Table.Cell>
+                <Table.Cell>{this.props.userInfo[0].time}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell><Header as='h3'>Surfing Ability</Header></Table.Cell>
+                <Table.Cell>{this.props.userInfo[0].ability}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell><Header as='h3'>Description</Header></Table.Cell>
+                <Table.Cell>{this.props.userInfo[0].description}</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </Grid.Row>
+        <Button.Group>
+          <div>
+            <Button positive as={NavLink} to={`/edit/${this.props.userInfo[0]._id}`}>Edit Profile</Button>
+          </div>
+          <Button.Or/>
+          <div>
+            <Button negative>Delete Profile</Button>
+          </div>
+        </Button.Group>
       </Grid>
     );
   }
