@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { AutoForm, ErrorsField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, LongTextField, SelectField, SubmitField, TextField, RadioField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -34,12 +34,12 @@ class EditUserInfo extends React.Component {
           <Header as="h2" textAlign="center">Edit Your Profile</Header>
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
             <Segment>
-              <TextField name='name'/>
-              <TextField name='image'/>
-              <SelectField name='time'/>
-              <SelectField name='ability'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
+              <TextField name='name' showInlineError={true}/>
+              <TextField name='image' showInlineError={true}/>
+              <SelectField name='time' showInlineError={true}/>
+              <RadioField name='ability' showInlineError={true}/>
+              <LongTextField name='description' showInlineError={true}/>
+              <SubmitField value='Update'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>
