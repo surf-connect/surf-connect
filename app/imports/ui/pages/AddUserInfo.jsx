@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, ErrorsField, SubmitField, TextField, SelectField, LongTextField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, SubmitField, TextField, SelectField, LongTextField, RadioField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -54,12 +54,12 @@ class AddUserInfo extends React.Component {
           <Header as="h2" textAlign="center">Create Your Profile</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
-              <TextField name='name'/>
-              <TextField name='image'/>
-              <SelectField name='time'/>
-              <SelectField name='ability'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
+              <TextField name='name' showInlineError={true}/>
+              <TextField name='image' showInlineError={true}/>
+              <SelectField name='time' showInlineError={true}/>
+              <RadioField name='ability' showInlineError={true}/>
+              <LongTextField name='description' showInlineError={true}/>
+              <SubmitField value='Create'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>
