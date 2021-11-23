@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Divider, Grid, Header, Icon, Image, Segment } from 'semantic-ui-react';
+import { Divider, Grid, Header, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import SendMessage from './SendMessage';
