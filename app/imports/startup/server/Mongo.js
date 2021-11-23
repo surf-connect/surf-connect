@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Messages } from '../../api/message/Message';
 import { Users } from '../../api/user/Users';
+import { Locations } from '../../api/location/Location';
 
 /* eslint-disable no-console */
 
@@ -9,6 +10,18 @@ import { Users } from '../../api/user/Users';
 function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Stuffs.collection.insert(data);
+}
+
+function addLoc(data) {
+  console.log(`Adding Location: ${data.name}`);
+  Locations.collection.insert(data);
+}
+
+if(Locations.collection.find().count() === 0) {
+  if (Meteor.settings.defaultData) {
+    console.log('Creating default data.');
+    Meteor.settings.defaultLocation.map(data => addLoc(data));
+  }
 }
 
 // Initialize the StuffsCollection if empty.
