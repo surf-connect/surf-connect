@@ -42,7 +42,7 @@ class SendMessage extends React.Component {
         <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
           <Segment>
             <TextField name='message'/>
-            <SubmitField value='Submit'/>
+            <SubmitField value='Reply'/>
             <ErrorsField/>
           </Segment>
         </AutoForm>

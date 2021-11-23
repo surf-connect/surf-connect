@@ -12,16 +12,6 @@ class Message extends React.Component {
   }
 
   render() {
-    /** Replies to a message sent to user. */
-    const replyToMessage = () => {
-      if (this.replyClicked) {
-        <SendMessage key={this.props.message._id} message={this.props.message}/>;
-      }
-    };
-
-    const setToTrue = () => {
-      this.replyClicked = true;
-    };
     return (
       <Segment>
         <Grid columns='2'>
@@ -36,25 +26,6 @@ class Message extends React.Component {
         <p>{this.props.message.message}</p>
         <div className='two ui buttons'>
           <SendMessage key={this.props.message._id} message={this.props.message} />
-          <Button animated basic color='blue' onClick={() => setToTrue()} >
-            <Button.Content visible>
-              <Icon name='chat' />
-            </Button.Content>
-            <Button.Content hidden>
-              Reply
-            </Button.Content>
-          </Button>
-          <Button animated basic color='red'>
-            <Button.Content visible>
-              <Icon name='delete' />
-            </Button.Content>
-            <Button.Content hidden>
-              Delete Message
-            </Button.Content>
-          </Button>
-          <Segment>
-            {replyToMessage()}
-          </Segment>
         </div>
       </Segment>
     );

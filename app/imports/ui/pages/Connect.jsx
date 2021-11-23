@@ -80,7 +80,7 @@ class Connect extends React.Component {
       position: 'fixed',
       bottom: '100px',
       right: '150px',
-      width: '200px',
+      width: '300px',
       zIndex: 2,
     };
 
