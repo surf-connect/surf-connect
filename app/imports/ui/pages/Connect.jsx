@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Divider, Dropdown, Segment, Loader } from 'semantic-ui-react';
+import { Container, Card, Header, Divider, Dropdown, Segment, Loader, Accordion } from 'semantic-ui-react';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
@@ -27,6 +27,18 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 class Connect extends React.Component {
+
+  state = { activeState: 0 };
+
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    let newIndex = index;
+    if (activeIndex === index) {
+      newIndex = -1;
+    }
+    this.setState({ activeIndex: newIndex });
+  }
 
   users=[
     {
@@ -58,6 +70,7 @@ class Connect extends React.Component {
   }
 
   renderPage() {
+    const { activeIndex } = this.state;
 
     // Sets CSS for header.
     const headerStyle = { fontFamily: 'Original Surfer, cursive' };
@@ -66,7 +79,7 @@ class Connect extends React.Component {
     const messageStyle = {
       position: 'fixed',
       bottom: '100px',
-      right: '80px',
+      right: '150px',
       width: '200px',
       zIndex: 2,
     };
@@ -98,11 +111,24 @@ class Connect extends React.Component {
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
-          <Dropdown text='Messages' icon='chat' floating labeled button className='icon'>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 0}
+              index={0}
+              onClick={this.handleClick} >
+              Messages
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 0} >
+              {this.props.messages.map(message => <Message key={message._id} message={message} />)}
+            </Accordion.Content>
+          </Accordion>
+          {/*
+          <Dropdown text='Messages' icon='chat' floating labeled button className='icon'
+            open={this.state.open} onBlur={this.handleClose} onFocus={this.handleOpen}>
             <Dropdown.Menu>
               {this.props.messages.map(message => <Message key={message._id} message={message} />)}
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
         </div>
         <div style={filterStyle}>
           <Dropdown text='Filters'>

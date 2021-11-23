@@ -2,10 +2,26 @@ import React from 'react';
 import { Button, Divider, Grid, Header, Icon, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import SendMessage from './SendMessage';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Message extends React.Component {
+  constructor() {
+    super();
+    this.replyClicked = false;
+  }
+
   render() {
+    /** Replies to a message sent to user. */
+    const replyToMessage = () => {
+      if (this.replyClicked) {
+        <SendMessage key={this.props.message._id} message={this.props.message}/>;
+      }
+    };
+
+    const setToTrue = () => {
+      this.replyClicked = true;
+    };
     return (
       <Segment>
         <Grid columns='2'>
@@ -19,7 +35,8 @@ class Message extends React.Component {
         <Divider />
         <p>{this.props.message.message}</p>
         <div className='two ui buttons'>
-          <Button animated basic color='blue'>
+          <SendMessage key={this.props.message._id} message={this.props.message} />
+          <Button animated basic color='blue' onClick={() => setToTrue()} >
             <Button.Content visible>
               <Icon name='chat' />
             </Button.Content>
@@ -35,6 +52,9 @@ class Message extends React.Component {
               Delete Message
             </Button.Content>
           </Button>
+          <Segment>
+            {replyToMessage()}
+          </Segment>
         </div>
       </Segment>
     );
