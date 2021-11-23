@@ -15,7 +15,7 @@ class LocationCollection {
       tide: Number,
       wind: Number,
       swells: Number,
-      waterTemp: Number;
+      waterTemp: Number,
       weather: Number,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
