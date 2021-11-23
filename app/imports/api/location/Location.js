@@ -10,9 +10,9 @@ class LocationCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      location: String,
+      name: String,
       image: String,
-      surfHeight: String,
+      surf: String,
       tide: Number,
       wind: Number,
       swells: Number,
