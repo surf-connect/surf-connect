@@ -11,11 +11,12 @@ class LocationCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       location: String,
-      surfHeight: Number,
+      image: String,
+      surfHeight: String,
       tide: Number,
       wind: Number,
       swells: Number,
-      waterTemp: Number,
+      wTemp: String,
       weather: Number,
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
