@@ -106,8 +106,6 @@ export default class Home extends React.Component {
         <Card.Group centered>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
-        <Header as='h1' style={headerStyle}>Top picks for the day</Header>
-        <Divider />
       </Container>
     );
   }
