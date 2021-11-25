@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Divider, Dropdown, Segment, Loader, Accordion } from 'semantic-ui-react';
+import { Container, Card, Header, Divider, Segment, Loader, Accordion } from 'semantic-ui-react';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
