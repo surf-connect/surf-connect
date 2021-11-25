@@ -73,13 +73,13 @@ class Connect extends React.Component {
     const { activeIndex } = this.state;
 
     // Sets CSS for header.
-    const headerStyle = { fontFamily: 'Original Surfer, cursive' };
+    const headerStyle = { padding: '20px', fontFamily: 'Original Surfer, cursive' };
 
     // Sets CSS for message button.
     const messageStyle = {
       position: 'fixed',
       bottom: '100px',
-      right: '150px',
+      right: '80px',
       width: '300px',
       zIndex: 2,
     };
@@ -88,7 +88,7 @@ class Connect extends React.Component {
     const filterStyle = {
       position: 'absolute',
       top: '93px',
-      left: '-90px',
+      left: '20px',
       width: '300px',
       zIndex: 1,
     };
@@ -122,17 +122,16 @@ class Connect extends React.Component {
               {this.props.messages.map(message => <Message key={message._id} message={message} />)}
             </Accordion.Content>
           </Accordion>
-          {/*
-          <Dropdown text='Messages' icon='chat' floating labeled button className='icon'
-            open={this.state.open} onBlur={this.handleClose} onFocus={this.handleOpen}>
-            <Dropdown.Menu>
-              {this.props.messages.map(message => <Message key={message._id} message={message} />)}
-            </Dropdown.Menu>
-          </Dropdown> */}
         </div>
         <div style={filterStyle}>
-          <Dropdown text='Filters'>
-            <Dropdown.Menu>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 1}
+              index={1}
+              onClick={this.handleClick} >
+              Filters
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 1} >
               <Segment>
                 <Header>Filters:</Header>
                 <Divider />
@@ -142,8 +141,8 @@ class Connect extends React.Component {
                   <SubmitField />
                 </AutoForm>
               </Segment>
-            </Dropdown.Menu>
-          </Dropdown>
+            </Accordion.Content>
+          </Accordion>
         </div>
       </Container>
     );
