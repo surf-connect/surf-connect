@@ -15,7 +15,7 @@ class SurfSuggestion extends React.Component {
     };
 
     const headerStyle = {
-      webkitTextStroke: '1px black',
+      WebkitTextStroke: '1px black',
     };
     return (
       <Segment>
