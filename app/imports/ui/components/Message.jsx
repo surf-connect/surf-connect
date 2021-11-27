@@ -4,15 +4,12 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import SendMessage from './SendMessage';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a Message box which will show the information of a message sent to a user. There is also a reply section which can be opened up and a reply message can be sent through a form. */
 class Message extends React.Component {
-  constructor() {
-    super();
-    this.replyClicked = false;
-  }
-
+  // Sets state for accordian clicks.
   state = { activeState: 0 };
 
+  // Handles accordian clicks.
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
     const { activeIndex } = this.state;
@@ -45,6 +42,7 @@ class Message extends React.Component {
             Reply To Message
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0} >
+            {/* Creates SendMessage component with the receiver of the message being the sender of the last message (reply). */}
             <SendMessage key={this.props.message._id} receiver={this.props.message.sender} />
           </Accordion.Content>
         </Accordion>

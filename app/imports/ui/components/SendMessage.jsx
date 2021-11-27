@@ -23,13 +23,13 @@ class SendMessage extends React.Component {
   submit(data, formRef) {
     const { message } = data;
     const owner = Meteor.user().username;
-    // Inserts a new Message document.
+    // Inserts a new Message document with the specified receiver and sender.
     Messages.collection.insert({ sender: owner, receiver: this.props.receiver,
       image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', message: message }, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Item added successfully', 'success');
+        swal('Success', `Message Sent to ${this.props.receiver}!`, 'success');
         formRef.reset();
       }
     });

@@ -2,31 +2,22 @@ import React from 'react';
 import { Button, Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import SendMessage from './SendMessage';
 import MessageForm from './MessageForm';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a user's information in a UI card. A message and like feature is allowed for users to message and like this user. */
 class UserDisplay extends React.Component {
   constructor() {
     super();
     this.state = {
+      // Holds the state whether an input box should be shown or not.
       messageView: false,
     };
   }
 
   buttonClick = () => {
-    this.setState({ messageView: !this.state.messageView }, () => {
-      console.log(this.state.messageView);
-    });
+    // Sets messageView state to true or false based on what it was before.
+    this.setState({ messageView: !this.state.messageView });
   };
-
-  view = () => {
-    if (this.state.messageView) {
-      <Card.Content>
-        <SendMessage key={this.props.user._id} receiver={this.props.user.name}/>
-      </Card.Content>;
-    }
-  }
 
   render() {
     const descStyle = { height: '50px' };
@@ -61,6 +52,7 @@ class UserDisplay extends React.Component {
             </Button>
           </div>
         </Card.Content>
+        {/* Creates a MesssageForm component and sets messageView to the state that it is at. */}
         {<MessageForm user={this.props.user} messageView={this.state.messageView} />}
       </Card>
     );
