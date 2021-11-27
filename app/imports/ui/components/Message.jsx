@@ -45,7 +45,7 @@ class Message extends React.Component {
             Reply To Message
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0} >
-            <SendMessage key={this.props.message._id} message={this.props.message} />
+            <SendMessage key={this.props.message._id} receiver={this.props.message.sender} />
           </Accordion.Content>
         </Accordion>
       </Segment>
