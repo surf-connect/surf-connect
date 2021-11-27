@@ -1,11 +1,16 @@
 import React from 'react';
-import { Container, Card, Header, Divider, Dropdown, Segment } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
+import { Container, Card, Header, Divider, Segment, Loader, Accordion } from 'semantic-ui-react';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Messages } from '../../api/message/Message';
 import UserDisplay from '../components/UserDisplay';
 import Message from '../components/Message';
 
+// Schema for filters form.
 const formSchema = new SimpleSchema({
   ability: {
     type: Number,
@@ -20,13 +25,31 @@ const formSchema = new SimpleSchema({
   },
 });
 
+// Converts schema into a schema for uniforms.
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-export default class Connect extends React.Component {
+/** Renders a page which shows all users connected to a user based on similar filters.
+ * The user is able to click the messages accordion to view all their messages and reply.
+ * They are also able to message users they are connected to. They can also click the filters accordian and fill out a form to update their filters. */
+class Connect extends React.Component {
+
+  // Sets state for each accordian. When pressed, the state changes.
+  state = { activeState: 0 };
+
+  // Handle click for accordians.
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    let newIndex = index;
+    if (activeIndex === index) {
+      newIndex = -1;
+    }
+    this.setState({ activeIndex: newIndex });
+  }
 
   users=[
     {
-      name: 'User 1',
+      name: 'User1@gmail.com',
       image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
       time: '3:00pm',
       ability: 4,
@@ -46,34 +69,25 @@ export default class Connect extends React.Component {
       ability: 2,
       description: 'Brooos! What up lets get pitted!',
     },
-  ]
+  ];
 
-  messages=[
-    {
-      sender: 'User 2',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      receiver: 'User 1',
-      message: 'Yo whats up? Wanna surf today?',
-    },
-    {
-      sender: 'User 3',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      receiver: 'User 1',
-      message: 'You down to surf?',
-    },
-  ]
-
+  // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  renderPage() {
+    const { activeIndex } = this.state;
 
     // Sets CSS for header.
-    const headerStyle = { fontFamily: 'Original Surfer, cursive' };
+    const headerStyle = { padding: '20px', fontFamily: 'Original Surfer, cursive' };
 
     // Sets CSS for message button.
     const messageStyle = {
       position: 'fixed',
       bottom: '100px',
       right: '80px',
-      width: '200px',
+      width: '300px',
       zIndex: 2,
     };
 
@@ -81,7 +95,7 @@ export default class Connect extends React.Component {
     const filterStyle = {
       position: 'absolute',
       top: '93px',
-      left: '-90px',
+      left: '20px',
       width: '300px',
       zIndex: 1,
     };
@@ -104,15 +118,28 @@ export default class Connect extends React.Component {
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
-          <Dropdown text='Messages' icon='chat' floating labeled button className='icon'>
-            <Dropdown.Menu>
-              {this.messages.map(message => <Message key={message.message} message={message} />)}
-            </Dropdown.Menu>
-          </Dropdown>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 0}
+              index={0}
+              onClick={this.handleClick} >
+              Messages
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 0} >
+              {/* Gets all messages sent to the user. */}
+              {this.props.messages.map(message => <Message key={message._id} message={message} />)}
+            </Accordion.Content>
+          </Accordion>
         </div>
         <div style={filterStyle}>
-          <Dropdown text='Filters'>
-            <Dropdown.Menu>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 1}
+              index={1}
+              onClick={this.handleClick} >
+              Filters
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 1} >
               <Segment>
                 <Header>Filters:</Header>
                 <Divider />
@@ -122,10 +149,30 @@ export default class Connect extends React.Component {
                   <SubmitField />
                 </AutoForm>
               </Segment>
-            </Dropdown.Menu>
-          </Dropdown>
+            </Accordion.Content>
+          </Accordion>
         </div>
       </Container>
     );
   }
 }
+
+Connect.propTypes = {
+  messages: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+export default withTracker(() => {
+  // Get access to Message documents.
+  const subscription = Meteor.subscribe(Messages.userPublicationName);
+  console.log(`Username: ${Messages.userPublicationName}`);
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  // Get the Message documents
+  const messages = Messages.collection.find({}).fetch();
+  return {
+    messages,
+    ready,
+  };
+})(Connect);
