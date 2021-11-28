@@ -104,21 +104,21 @@ class Connect extends React.Component {
       <Container textAlign='center' >
         <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
         <Divider />
-        <Card.Group centered>
+        <Card.Group stackable centered>
           {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
-        <Card.Group centered>
+        <Card.Group stackable centered>
           {[this.users[0]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
-        <Card.Group centered>
+        <Card.Group stackable centered>
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
-          <Accordion>
+          <Accordion fluid styled>
             <Accordion.Title
               active={activeIndex === 0}
               index={0}

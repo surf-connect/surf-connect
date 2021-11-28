@@ -16,7 +16,7 @@ const formSchema = new SimpleSchema({
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a form where the user can type in and submit as a message to another user. */
 class SendMessage extends React.Component {
 
   // On submit, insert the data.
@@ -29,7 +29,7 @@ class SendMessage extends React.Component {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', `Message Sent to ${this.props.receiver}!`, 'success');
+        swal('Success', `${this.props.messageType} Sent to ${this.props.receiver}!`, 'success');
         formRef.reset();
       }
     });
@@ -42,7 +42,7 @@ class SendMessage extends React.Component {
         <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
           <Segment>
             <TextField name='message'/>
-            <SubmitField value='Reply'/>
+            <SubmitField value={this.props.messageType} />
             <ErrorsField/>
           </Segment>
         </AutoForm>
@@ -54,6 +54,7 @@ class SendMessage extends React.Component {
 // Require a document to be passed to this component.
 SendMessage.propTypes = {
   receiver: PropTypes.string.isRequired,
+  messageType: PropTypes.string.isRequired,
 };
 
 export default withRouter(SendMessage);
