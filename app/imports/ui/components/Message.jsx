@@ -10,6 +10,19 @@ class Message extends React.Component {
   // Sets state for accordian clicks.
   state = { activeState: 0 };
 
+  // Checks if the number of characters in this.props.message.sender is greater than 5 and abbreviates it if so.
+  checkCharacters = () => {
+    let label = this.props.message.sender.length;
+    if (label > 8) {
+      label = '';
+      for (let i = 0; i < 8; i++) {
+        label += this.props.message.sender[i];
+      }
+      label += '...';
+    }
+    return label;
+  }
+
   // Handles accordion clicks.
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
@@ -21,17 +34,21 @@ class Message extends React.Component {
     this.setState({ activeIndex: newIndex });
   }
 
+  // Deletes a message from MongoDB collection.
   deleteMessage = () => {
+    // Delete message based on ID.
     Messages.collection.remove({ _id: this.props.message._id });
   }
 
   render() {
     const { activeIndex } = this.state;
+    // Sets senderLabel to the string returned from checkCharacters.
+    const senderLabel = this.checkCharacters();
     return (
       <Segment>
         <Grid stackable columns='3'>
           <Grid.Column>
-            <Header as='h5' textAlign='left' >{`From: ${this.props.message.sender}`}</Header>
+            <Header as='h5' textAlign='left' >{`From: ${senderLabel}`}</Header>
           </Grid.Column>
           <Grid.Column>
             <Image size='tiny' src={this.props.message.image} />
