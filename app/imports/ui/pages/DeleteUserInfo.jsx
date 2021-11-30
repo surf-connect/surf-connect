@@ -1,7 +1,7 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Loader, Header } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { AutoForm, ErrorsField, LongTextField, SelectField, SubmitField, TextField, RadioField } from 'uniforms-semantic';
+import { AutoForm, SubmitField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -11,14 +11,14 @@ import { Users } from '../../api/user/Users';
 const bridge = new SimpleSchema2Bridge(Users.schema);
 
 /** Renders the Page for editing a single document. */
-class EditUserInfo extends React.Component {
+class DeleteUserInfo extends React.Component {
 
-  // On successful submit, insert the data.
-  submit(data) {
+  // On confirm, remove the data.
+  confirm(data) {
     const { name, image, description, time, ability, _id } = data;
-    Users.collection.update(_id, { $set: { name, image, description, time, ability } }, (error) => (error ?
+    Users.collection.remove(_id, { $set: { name, image, description, time, ability } }, (error) => (error ?
       swal('Error', error.message, 'error') :
-      swal('Success', 'Profile updated successfully', 'success')));
+      swal('Success', 'Profile deleted successfully', 'success')));
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -29,19 +29,12 @@ class EditUserInfo extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid id='edit-profile-page' container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Edit Your Profile</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-            <Segment>
-              <TextField id='edit-profile-name' name='name' showInlineError={true}/>
-              <TextField id='edit-profile-image' name='image' showInlineError={true}/>
-              <SelectField id='edit-profile-time' name='time' showInlineError={true}/>
-              <RadioField id='edit-profile-ability' name='ability' showInlineError={true}/>
-              <LongTextField id='edit-profile-description' name='description' showInlineError={true}/>
-              <SubmitField id='confirm-edit-profile' value='Update'/>
-              <ErrorsField/>
-            </Segment>
+      <Grid id='delete-profile-page' container centered>
+        <Grid.Column textAlign="center">
+          <Header as="h2">Delete Profile</Header>
+          <Header as="h3">Are you sure you want to delete your profile?</Header>
+          <AutoForm schema={bridge} onSubmit={data => this.confirm(data)} model={this.props.doc}>
+            <SubmitField id='confirm-delete-profile' value='Confirm'/>
           </AutoForm>
         </Grid.Column>
       </Grid>
@@ -50,7 +43,7 @@ class EditUserInfo extends React.Component {
 }
 
 // Require the presence of a User document in the props object. Uniforms adds 'model' to the props, which we use.
-EditUserInfo.propTypes = {
+DeleteUserInfo.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
@@ -70,4 +63,4 @@ export default withTracker(({ match }) => {
     doc,
     ready,
   };
-})(EditUserInfo);
+})(DeleteUserInfo);

@@ -15,6 +15,7 @@ const formSchema = new SimpleSchema({
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
+/** Renders a page that shows all of the suggestions for a user based on their surfing ability. */
 export default class Suggestions extends React.Component {
 
   suggestions=[

@@ -18,6 +18,7 @@ import Suggestions from '../pages/Suggestions';
 import Home from '../pages/Home';
 import AddUserInfo from '../pages/AddUserInfo';
 import EditUserInfo from '../pages/EditUserInfo';
+import DeleteUserInfo from '../pages/DeleteUserInfo';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -38,6 +39,7 @@ class App extends React.Component {
             <ProtectedRoute path="/user" component={User}/>
             <ProtectedRoute path="/add" component={AddUserInfo}/>
             <ProtectedRoute path="/edit/:_id" component={EditUserInfo}/>
+            <ProtectedRoute path="/delete/:_id" component={DeleteUserInfo}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <Route component={NotFound}/>
           </Switch>

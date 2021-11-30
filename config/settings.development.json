@@ -5,7 +5,7 @@
   },
 
   "defaultMessages": [
-    { "sender": "user1", "receiver": "john@foo.com", "image": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80", "message": "Whats up bro!" }
+    { "sender": "charlierobison480@gmail.com", "receiver": "john@foo.com", "image": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80", "message": "Whats up bro!" }
   ],
 
   "defaultAccounts": [
