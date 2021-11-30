@@ -1,10 +1,17 @@
 import React from 'react';
-import { Container, Divider, Feed, Header, Grid, Card } from 'semantic-ui-react';
+import { Container, Divider, Feed, Header, Grid, Card, Loader } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import SurfSuggestion from '../components/SurfSuggestion';
 import UserDisplay from '../components/UserDisplay';
+import { Locations } from '../../api/location/Location';
+import { Users } from '../../api/user/Users';
 
-export default class Home extends React.Component {
-
+class Home extends React.Component {
+  render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting Data</Loader>;
+  }
   suggestions=[
     {
       name: 'Pipeline',
@@ -83,12 +90,13 @@ export default class Home extends React.Component {
     },
   ]
 
-  render() {
+  renderPage() {
 
     // Sets CSS for header.
     const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '50px' };
-
     // Sets CSS for filters.
+    const lucky = _.sample(this.props.userInfo, 1);
+    console.log(lucky);
     return (
       <Container textAlign='center'>
         <Header as='h1' style={headerStyle}>Location Suggestions</Header>
@@ -104,9 +112,28 @@ export default class Home extends React.Component {
         <Header as='h1' style={headerStyle}>Surf Buddy Picks</Header>
         <Divider />
         <Card.Group centered>
-          {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
+          {lucky.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
       </Container>
     );
   }
 }
+
+Home.propTypes = {
+  userInfo: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe(Users.userPublicationName);
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  // Get the Stuff documents
+  const userInfo = Users.collection.find({}).fetch();
+  return {
+    userInfo,
+    ready,
+  };
+})(Home);
