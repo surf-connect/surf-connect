@@ -30,11 +30,22 @@ class NavBar {
     await testController.click('#navbar-sign-out');
   }
 
+  /** Go to Surf Locations page. */
+  async gotoSurflocationsPage(testController) {
+    await testController.click('#locations-page');
+  }
+
   /** Pull down login menu, go to sign up page. */
   async gotoSignupPage(testController) {
     await this.ensureLogout(testController);
     await testController.click('#login-dropdown');
     await testController.click('#login-dropdown-sign-up');
+  }
+
+  /** Pull down login menu, go to user page. */
+  async gotoUserPage(testController) {
+    await testController.click('#navbar-current-user');
+    await testController.click('#navbar-user-page');
   }
 }
 

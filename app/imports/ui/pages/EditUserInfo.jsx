@@ -29,17 +29,17 @@ class EditUserInfo extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid container centered>
+      <Grid id='edit-profile-page' container centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">Edit Your Profile</Header>
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
             <Segment>
-              <TextField name='name' showInlineError={true}/>
-              <TextField name='image' showInlineError={true}/>
-              <SelectField name='time' showInlineError={true}/>
-              <RadioField name='ability' showInlineError={true}/>
-              <LongTextField name='description' showInlineError={true}/>
-              <SubmitField value='Update'/>
+              <TextField id='edit-profile-name' name='name' showInlineError={true}/>
+              <TextField id='edit-profile-image' name='image' showInlineError={true}/>
+              <SelectField id='edit-profile-time' name='time' showInlineError={true}/>
+              <RadioField id='edit-profile-ability' name='ability' showInlineError={true}/>
+              <LongTextField id='edit-profile-description' name='description' showInlineError={true}/>
+              <SubmitField id='confirm-edit-profile' value='Update'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>

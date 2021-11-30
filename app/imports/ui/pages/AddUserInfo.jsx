@@ -49,17 +49,17 @@ class AddUserInfo extends React.Component {
   render() {
     let fRef = null;
     return (
-      <Grid container centered>
+      <Grid id='add-user' container centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">Create Your Profile</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
-              <TextField name='name' showInlineError={true}/>
-              <TextField name='image' showInlineError={true}/>
-              <SelectField name='time' showInlineError={true}/>
-              <RadioField name='ability' showInlineError={true}/>
-              <LongTextField name='description' showInlineError={true}/>
-              <SubmitField value='Create'/>
+              <TextField id='profile-name' name='name' showInlineError={true}/>
+              <TextField id='profile-image' name='image' showInlineError={true}/>
+              <SelectField id='profile-time' name='time' showInlineError={true}/>
+              <RadioField id='profile-ability' name='ability' showInlineError={true}/>
+              <LongTextField id='profile-description' name='description' showInlineError={true}/>
+              <SubmitField id='profile-create' value='Create'/>
               <ErrorsField/>
             </Segment>
           </AutoForm>

@@ -88,7 +88,7 @@ export default class Forecast extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container id='forecast-page'>
         <Header as='h1' textAlign='center'>Surf Spots on Oahu</Header>
         <Table fixed inverted size='large'>
           <Table.Header>

@@ -21,7 +21,7 @@ class User extends React.Component {
         <Redirect to='/add'/>
       ) : (
         // If a profile is found, display profile information.
-        <Grid container centered>
+        <Grid id='user' container centered>
           <Grid.Row>
             <Header as='h1' textAlign='center'>My Profile</Header>
           </Grid.Row>
@@ -55,11 +55,11 @@ class User extends React.Component {
           </Grid.Row>
           <Button.Group>
             <div>
-              <Button positive as={NavLink} to={`/edit/${this.props.userInfo[0]._id}`}>Edit Profile</Button>
+              <Button id='edit-user' positive as={NavLink} to={`/edit/${this.props.userInfo[0]._id}`}>Edit Profile</Button>
             </div>
             <Button.Or/>
             <div>
-              <Button negative as={NavLink} to={`/delete/${this.props.userInfo[0]._id}`}>Delete Profile</Button>
+              <Button id='delete-user' negative as={NavLink} to={`/delete/${this.props.userInfo[0]._id}`}>Delete Profile</Button>
             </div>
           </Button.Group>
         </Grid>
