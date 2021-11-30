@@ -3,7 +3,7 @@ import { Grid, Header, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a component that shows a surf suggestion based on the ability prop given. */
 class SurfSuggestion extends React.Component {
   render() {
     const segmentStyle = {
