@@ -15,7 +15,7 @@ import { forecastPage } from './forecast.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const newuser = { username: 'email@foo.com', password: 'changeme', name: 'New User', image: 'https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg', description: 'Lets go surfing' };
 
-fixture('meteor-application-template-react localhost test with default db').page('http://localhost:3000');
+fixture('surf-connect localhost test with default db').page('http://localhost:3000');
 
 test('Test that landing page shows up', async (testController) => {
   await landingPage.isDisplayed(testController);
