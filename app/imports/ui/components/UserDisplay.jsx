@@ -42,7 +42,7 @@ class UserDisplay extends React.Component {
                 Like profile
               </Button.Content>
             </Button>
-            <Button animated basic color='blue' onClick={() => this.buttonClick()}>
+            <Button animated basic color='blue' id='message-click' onClick={() => this.buttonClick()}>
               <Button.Content visible>
                 <Icon name='chat'/>
               </Button.Content>

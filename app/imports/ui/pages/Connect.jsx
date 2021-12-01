@@ -101,7 +101,7 @@ class Connect extends React.Component {
     };
 
     return (
-      <Container textAlign='center' >
+      <Container textAlign='center' id='connect-page'>
         <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
@@ -118,7 +118,7 @@ class Connect extends React.Component {
           {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
-          <Accordion fluid styled>
+          <Accordion fluid styled id='user-messages'>
             <Accordion.Title
               active={activeIndex === 0}
               index={0}

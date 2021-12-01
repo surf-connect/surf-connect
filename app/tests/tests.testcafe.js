@@ -7,6 +7,8 @@ import { adduserinfoPage } from './adduserinfo.page';
 import { edituserinfoPage } from './edituserinfo.page';
 import { deleteuserinfoPage } from './deleteuserinfo.page';
 import { forecastPage } from './forecast.page';
+import { connectPage } from './connect.page';
+import { suggestionsPage } from './suggestions.page';
 
 /* global fixture:false, test:false */
 
@@ -70,4 +72,19 @@ test('Test the deleteuserinfo page', async (testController) => {
   await deleteuserinfoPage.deleteProfile(testController);
   await navBar.gotoUserPage(testController);
   await adduserinfoPage.isDisplayed(testController);
+});
+
+test('Test the connect page', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoConnectPage(testController);
+  await connectPage.isDisplayed(testController);
+  await connectPage.createMessage(testController, 'New Message');
+});
+
+test('Test the suggestions page', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoSuggestionsPage(testController);
+  await suggestionsPage.isDisplayed(testController);
 });

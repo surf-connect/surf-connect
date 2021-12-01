@@ -53,7 +53,7 @@ export default class Suggestions extends React.Component {
       zIndex: 1,
     };
     return (
-      <Container textAlign='center'>
+      <Container textAlign='center' id='suggestion-page'>
         <Header as='h1' style={headerStyle}>Surf Suggestions</Header>
         <Divider />
         <Feed>
