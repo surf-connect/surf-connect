@@ -24,7 +24,7 @@ class SurfSuggestion extends React.Component {
             <Header as='h1' style={headerStyle} inverted>{this.props.suggestion.name}</Header>
           </Grid.Column>
           <Grid.Column>
-            <Header as='h2' style={headerStyle} inverted>{`Average Wave Height: ${this.props.suggestion.waveHeight}`}</Header>
+            <Header as='h2' style={headerStyle} inverted>{`Average Wave Height: ${this.props.suggestion.averageW} ft`}</Header>
           </Grid.Column>
           <Grid.Column>
             <Header as='h2' style={headerStyle} inverted>{`Surf Ability: ${this.props.suggestion.ability}`}</Header>
@@ -39,6 +39,7 @@ class SurfSuggestion extends React.Component {
 SurfSuggestion.propTypes = {
   suggestion: PropTypes.shape({
     name: PropTypes.string,
+    averageW: PropTypes.number,
     image: PropTypes.string,
     waveHeight: PropTypes.string,
     ability: PropTypes.number,

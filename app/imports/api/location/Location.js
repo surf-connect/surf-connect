@@ -18,6 +18,8 @@ class LocationCollection {
       swells: Number,
       wTemp: String,
       weather: Number,
+      averageW: Number,
+      ability: { type: Number, allowedValues: [1, 2, 3, 4, 5] },
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);

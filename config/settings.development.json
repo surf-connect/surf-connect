@@ -15,7 +15,7 @@
 
   "defaultUsers": [
     { "name": "Admin", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello", "time": "12:00pm", "ability": 1, "owner": "admin@foo.com" },
-    { "name": "John", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello, my name is John", "time": "3:00pm", "ability": 4, "owner": "john@foo.com" }
+    { "name": "John", "image": "https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg", "description": "Hello, my name is John", "time": "3:00pm", "ability": 4, "owner": "john@foo.com" }
   ],
 
   "defaultData": [
@@ -26,13 +26,13 @@
   ],
 
   "defaultLocation": [
-    {"name": "Pipeline", "image": "https://media-cdn.tripadvisor.com/media/photo-s/16/fc/15/cf/beach.jpg", "surf": "6-8", "tide": "0.2", "wind": "2", "swells": "3.8", "wTemp": "77-79", "weather": "77"
+    {"name": "Pipeline", "image": "https://media-cdn.tripadvisor.com/media/photo-s/16/fc/15/cf/beach.jpg", "surf": "6-8", "tide": "0.2", "wind": "2", "swells": "3.8", "wTemp": "77-79", "weather": "77", "averageW": "6", "ability": "5"
     },
     {
-      "name": "Waimea Bay", "image": "https://www.best-of-oahu.com/images/xWaimea-Bay-Hawaii.jpg.pagespeed.ic.yfWUlSbrXr.jpg", "surf": "6-8", "tide": "0.2", "wind": "2", "swells": "3.8", "wTemp": "77-79", "weather": "77"
+      "name": "Waimea Bay", "image": "https://www.best-of-oahu.com/images/xWaimea-Bay-Hawaii.jpg.pagespeed.ic.yfWUlSbrXr.jpg", "surf": "6-8", "tide": "0.2", "wind": "2", "swells": "3.8", "wTemp": "77-79", "weather": "77", "averageW": "2", "ability": "1"
     },
     {
-      "name": "Barbers Point", "image": "https://media-cdn.tripadvisor.com/media/photo-s/16/d5/d8/fc/beach.jpg", "surf": "2-3", "tide": "0.9", "wind": "8", "swells": "1.3", "wTemp": "77-79", "weather": "78"
+      "name": "Barbers Point", "image": "https://media-cdn.tripadvisor.com/media/photo-s/16/d5/d8/fc/beach.jpg", "surf": "2-3", "tide": "0.9", "wind": "8", "swells": "1.3", "wTemp": "77-79", "weather": "78", "averageW": "3", "ability": "2"
     },
     {
       "name": "Sunset Beach",
@@ -42,7 +42,9 @@
       "wind": "2",
       "swells": "3.8",
       "wTemp": "77-79",
-      "weather": "77"
+      "weather": "77",
+      "averageW": "2",
+      "ability": "1"
     },
     {
       "name": "Mokuleia",
@@ -52,7 +54,9 @@
       "wind": "8",
       "swells": "3.8",
       "wTemp": "77-79",
-      "weather": "78"
+      "weather": "78",
+      "averageW": "4",
+      "ability": "3"
     },
     {
       "name": "Laniakea",
@@ -62,7 +66,9 @@
       "wind": "3",
       "swells": "3.8",
       "wTemp": "77-79",
-      "weather": "76"
+      "weather": "76",
+      "averageW": "5",
+      "ability": "5"
     },
     {
       "name": "Haleiwa",
@@ -72,7 +78,9 @@
       "wind": "3",
       "swells": "3.8",
       "wTemp": "77-79",
-      "weather": "77"
+      "weather": "77",
+      "averageW": "7",
+      "ability": "5"
     },
     {
       "name": "Sand Island",
@@ -82,7 +90,9 @@
       "wind": "9",
       "swells": "1.2",
       "wTemp": "77-79",
-      "weather": "78"
+      "weather": "78",
+      "averageW": "1",
+      "ability": "1"
     }
   ]
 }
