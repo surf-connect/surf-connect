@@ -2,18 +2,24 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
-class MessageCollection {
+class LocationCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'MessageCollection';
+    this.name = 'LocationCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      sender: String,
-      receiver: String,
+      name: String,
       image: String,
-      message: String,
+      surf: String,
+      tide: Number,
+      wind: Number,
+      swells: Number,
+      wTemp: String,
+      weather: Number,
+      averageW: Number,
+      ability: { type: Number, allowedValues: [1, 2, 3, 4, 5] },
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
@@ -23,4 +29,4 @@ class MessageCollection {
   }
 }
 
-export const Messages = new MessageCollection();
+export const Locations = new LocationCollection();

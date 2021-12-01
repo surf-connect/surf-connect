@@ -3,7 +3,10 @@ import { Container, Divider, Feed, Header, Segment, Dropdown } from 'semantic-ui
 import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 import SurfSuggestion from '../components/SurfSuggestion';
+import { Locations } from '../../api/location/Location';
 
 const formSchema = new SimpleSchema({
   ability: {
@@ -16,28 +19,7 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders a page that shows all of the suggestions for a user based on their surfing ability. */
-export default class Suggestions extends React.Component {
-
-  suggestions=[
-    {
-      name: 'Pipeline',
-      image: 'https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2021/02/16153430/Klein_HAWAII_Feb2021_Pipeline_7855griffin_colapinto.jpg',
-      waveHeight: '10-12 ft',
-      ability: 5,
-    },
-    {
-      name: 'Waimea',
-      image: 'https://www.surfholidays.com/assets/images/blog/2012-03-20-legendary-surf-spots-waimea-0.jpg',
-      waveHeight: '15-17 ft',
-      ability: 5,
-    },
-    {
-      name: 'Sandy Beach',
-      image: 'https://i.ytimg.com/vi/7lMx81937v4/maxresdefault.jpg',
-      waveHeight: '3-4 ft',
-      ability: 3,
-    },
-  ]
+class Suggestions extends React.Component {
 
   render() {
 
@@ -57,7 +39,7 @@ export default class Suggestions extends React.Component {
         <Header as='h1' style={headerStyle}>Surf Suggestions</Header>
         <Divider />
         <Feed>
-          {this.suggestions.map(suggestion => <SurfSuggestion key={suggestion.name} suggestion={suggestion} />)}
+          {this.props.sub.map(suggestion => <SurfSuggestion key={suggestion.name} suggestion={suggestion} />)}
         </Feed>
         <div style={filterStyle}>
           <Dropdown text='Filters'>
@@ -77,3 +59,17 @@ export default class Suggestions extends React.Component {
     );
   }
 }
+
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe(Locations.userPublicationName);
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  // Get the Stuff documents
+  const sub = Locations.collection.find({}).fetch();
+
+  return {
+    ready,
+    sub,
+  };
+})(Suggestions);
