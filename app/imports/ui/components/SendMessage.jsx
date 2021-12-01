@@ -41,8 +41,8 @@ class SendMessage extends React.Component {
       <Container>
         <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
           <Segment>
-            <TextField name='message'/>
-            <SubmitField value={this.props.messageType} />
+            <TextField name='message' id='message-form' />
+            <SubmitField value={this.props.messageType} id='send-message' />
             <ErrorsField/>
           </Segment>
         </AutoForm>
