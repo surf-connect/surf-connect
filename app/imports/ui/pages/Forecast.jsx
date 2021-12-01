@@ -12,9 +12,10 @@ class Forecast extends React.Component {
   }
 
   renderPage() {
+    const style = { marginTop: '50px' };
     return (
       <Container id='forecast-page'>
-        <Header as='h1' textAlign='center'>Surf Spots on Oahu</Header>
+        <Header as='h1' style={style} textAlign='center'>Oahu Surf Forecast</Header>
         <Table fixed inverted size='large'>
           <Table.Header>
             <Table.Row>
