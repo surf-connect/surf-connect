@@ -14,7 +14,6 @@ import Signout from '../pages/Signout';
 import User from '../pages/User';
 import Connect from '../pages/Connect';
 import Forecast from '../pages/Forecast';
-import Suggestions from '../pages/Suggestions';
 import Home from '../pages/Home';
 import AddUserInfo from '../pages/AddUserInfo';
 import EditUserInfo from '../pages/EditUserInfo';
@@ -33,9 +32,8 @@ class App extends React.Component {
             <Route path="/signup" component={Signup}/>
             <Route path="/home" component={Home}/>
             <Route path="/signout" component={Signout}/>
-            <Route path="/locations" component={Forecast}/>
+            <Route path="/forecast" component={Forecast}/>
             <Route path="/connect" component={Connect}/>
-            <Route path="/suggestions" component={Suggestions}/>
             <ProtectedRoute path="/user" component={User}/>
             <ProtectedRoute path="/add" component={AddUserInfo}/>
             <ProtectedRoute path="/edit/:_id" component={EditUserInfo}/>
