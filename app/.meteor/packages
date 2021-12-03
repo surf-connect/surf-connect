@@ -13,7 +13,7 @@ reactive-var@1.0.11              # Reactive variable for tracker
 standard-minifier-css@1.7.4      # CSS minifier run for production mode
 zodern:standard-minifier-js
 es5-shim@4.8.0                   # ECMAScript 5 compatibility for older browsers
-ecmascript@0.15.3                # Enable ECMAScript2015+ syntax in app code
+ecmascript                # Enable ECMAScript2015+ syntax in app code
 # typescript@3.7.6               # Enable TypeScript syntax in .ts and .tsx modules
 shell-server@0.5.0               # Server-side component of the `meteor shell` command
 
@@ -40,3 +40,4 @@ ejson@1.1.1                      # https://docs.meteor.com/api/ejson.html
 # Application Performance Monitoring
 montiapm:agent                   # see http://montiapm.com
 zodern:hide-production-sourcemaps
+fetch
