@@ -17,7 +17,7 @@ function addLoc(data) {
   Locations.collection.insert(data);
 }
 
-if(Locations.collection.find().count() === 0) {
+if (Locations.collection.find().count() === 0) {
   if (Meteor.settings.defaultData) {
     console.log('Creating default data.');
     Meteor.settings.defaultLocation.map(data => addLoc(data));

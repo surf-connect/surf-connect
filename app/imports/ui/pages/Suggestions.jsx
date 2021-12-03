@@ -5,6 +5,7 @@ import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
 import SurfSuggestion from '../components/SurfSuggestion';
 import { Locations } from '../../api/location/Location';
 
@@ -59,6 +60,11 @@ class Suggestions extends React.Component {
     );
   }
 }
+
+Suggestions.propTypes = {
+  sub: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
 
 export default withTracker(() => {
   // Get access to Stuff documents.
