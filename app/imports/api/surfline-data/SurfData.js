@@ -20,8 +20,8 @@ export const surfData = async (spotId, spotName, spotImage) => {
   // Makes API call to receive wave data for the spot given.
   const waveInfo = await fetch(`https://services.surfline.com/kbyg/spots/forecasts/wave?spotId=${spotId}&days=1&intervalHours=24&maxHeights=false&sds=false`);
   const waveInfoToJson = await waveInfo.json();
-  const minWaveHeight = Math.floor(waveInfoToJson.data.wave[0].surf.min);
-  const maxWaveHeight = Math.floor(waveInfoToJson.data.wave[0].surf.max);
+  const minWaveHeight = Math.ceil(waveInfoToJson.data.wave[0].surf.min);
+  const maxWaveHeight = Math.ceil(waveInfoToJson.data.wave[0].surf.max);
   const swellHeight = waveInfoToJson.data.wave[0].swells[0].height;
   // Makes API call to receive wind data for the spot given.
   const windInfo = await fetch(`https://services.surfline.com/kbyg/spots/forecasts/wind?spotId=${spotId}&days=1&intervalHours=24&maxHeights=false&sds=false`);
