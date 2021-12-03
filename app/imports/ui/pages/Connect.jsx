@@ -9,6 +9,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Messages } from '../../api/message/Message';
 import UserDisplay from '../components/UserDisplay';
 import Message from '../components/Message';
+import { Users } from '../../api/user/Users';
 
 // Schema for filters form.
 const formSchema = new SimpleSchema({
@@ -47,30 +48,6 @@ class Connect extends React.Component {
     this.setState({ activeIndex: newIndex });
   }
 
-  users=[
-    {
-      name: 'User1@gmail.com',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      time: '3:00pm',
-      ability: 4,
-      description: 'I love surfing! Picked it up about 5 years ago and I am considered to be a high level surfer but not professional!',
-    },
-    {
-      name: 'User 2',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      time: '8:00am',
-      ability: 5,
-      description: 'I like surfing in the morning! Message me!!',
-    },
-    {
-      name: 'User 3',
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      time: '8:00am',
-      ability: 2,
-      description: 'Brooos! What up lets get pitted!',
-    },
-  ];
-
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -105,17 +82,17 @@ class Connect extends React.Component {
         <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.users.map(user => <UserDisplay key={user.name} user={user} />)}
+          {this.props.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {[this.users[0]].map(user => <UserDisplay key={user.name} user={user} />)}
+          {this.props.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
         <Card.Group stackable centered>
-          {[this.users[1], this.users[2]].map(user => <UserDisplay key={user.name} user={user} />)}
+          {this.props.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
           <Accordion fluid styled id='user-messages'>
@@ -159,20 +136,29 @@ class Connect extends React.Component {
 
 Connect.propTypes = {
   messages: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Message documents.
+  // Get access to Message and User documents.
   const subscription = Meteor.subscribe(Messages.userPublicationName);
-  console.log(`Username: ${Messages.userPublicationName}`);
+  const subscription2 = Meteor.subscribe(Users.userPublicationName);
+
+  // console.log(`Username: ${Messages.userPublicationName}`);
+
   // Determine if the subscription is ready
-  const ready = subscription.ready();
+  const ready = subscription.ready() && subscription2.ready();
   // Get the Message documents
   const messages = Messages.collection.find({}).fetch();
+  // Get the user documents
+  const currentUser = Meteor.user() ? Meteor.user().username : '';
+  const users = Users.collection.find({ owner: { $not: currentUser } }).fetch();
+  console.log(users);
   return {
     messages,
+    users,
     ready,
   };
 })(Connect);
