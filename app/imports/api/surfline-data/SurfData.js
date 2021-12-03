@@ -48,9 +48,16 @@ export const surfData = async (spotId, spotName, spotImage) => {
     weather: temp,
     ability: ability,
   };
-  /// FIND WAY TO UPDATE INSTEAD IF ALREADY ADDED!!
-  // Inserts the location into the Locations collection.
-  Locations.collection.insert(location);
+  // Checks if DB is empty.
+  if (Locations.collection.find({}).count() === 0) {
+    // Adds locations to DB.
+    Locations.collection.insert(location);
+  } else {
+    // Updates LocationCollection with new data from API.
+    Locations.collection.update({ name: spotName }, { $set: location }, (error) => (error ?
+      console.log(`Error updating location: ${spotName}`) :
+      console.log(`Successfully updated location: ${spotName}`)));
+  }
   // Debugging messages on server side.
   console.log(`Inserted location: ${spotName} to DB.`);
   console.log(`Location data: ${JSON.stringify(location)}`);
