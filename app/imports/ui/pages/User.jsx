@@ -8,6 +8,8 @@ import { Users } from '../../api/user/Users';
 
 class User extends React.Component {
 
+  username = Meteor.user() ? Meteor.user().username : '';
+
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -16,7 +18,7 @@ class User extends React.Component {
   renderPage() {
     return (
       // Look for user's profile in the collection.
-      (Users.collection.find({}).count() === 0) ? (
+      (Users.collection.find({ owner: this.username }).count() === 0) ? (
         // If no profile is found, redirect user to AddUserInfo page.
         <Redirect to='/add'/>
       ) : (
@@ -81,7 +83,8 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents
-  const userInfo = Users.collection.find({}).fetch();
+  const currentUser = Meteor.user() ? Meteor.user().username : '';
+  const userInfo = Users.collection.find({ owner: currentUser }).fetch();
   return {
     userInfo,
     ready,
