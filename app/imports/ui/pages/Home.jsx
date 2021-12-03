@@ -45,9 +45,7 @@ class Home extends React.Component {
 Home.propTypes = {
   userInfo: PropTypes.array.isRequired,
   sub: PropTypes.array.isRequired,
-  subscription2: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
-  ready2: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -56,8 +54,7 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe(Users.userPublicationName);
   const subscription2 = Meteor.subscribe(Locations.userPublicationName);
   // Determine if the subscription is ready
-  const ready = subscription.ready();
-  const ready2 = subscription2.ready();
+  const ready = subscription.ready() && subscription2.ready();
   // Get the Stuff documents
   const sub = Locations.collection.find({}).fetch();
   const userInfo = Users.collection.find({}).fetch();
@@ -66,6 +63,5 @@ export default withTracker(() => {
     userInfo,
     ready,
     sub,
-    ready2,
   };
 })(Home);
