@@ -163,7 +163,7 @@ export default withTracker(() => {
   const time = '12:00pm';
   const usersByTime = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { time: time }] }).fetch();
 
-  const usersByTimeAndAbility = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { time: time }] }, { ability: ability }).fetch();
+  const usersByTimeAndAbility = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { $and: [{ time: time }, { ability: ability }] }] }).fetch();
 
   return {
     messages,
