@@ -87,12 +87,12 @@ class Connect extends React.Component {
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.map(user => <UserDisplay key={user.name} user={user} />)}
+          {this.props.usersByAbility.map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.map(user => <UserDisplay key={user.name} user={user} />)}
+          {this.props.usersByTime.map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
           <Accordion fluid styled id='user-messages'>
@@ -137,6 +137,8 @@ class Connect extends React.Component {
 Connect.propTypes = {
   messages: PropTypes.array.isRequired,
   users: PropTypes.array.isRequired,
+  usersByAbility: PropTypes.array.isRequired,
+  usersByTime: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -155,10 +157,18 @@ export default withTracker(() => {
   // Get the user documents
   const currentUser = Meteor.user() ? Meteor.user().username : '';
   const users = Users.collection.find({ owner: { $not: currentUser } }).fetch();
-  console.log(users);
+
+  const ability = 1;
+  const usersByAbility = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { ability: ability }] }).fetch();
+
+  const time = '12:00pm';
+  const usersByTime = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { time: time }] }).fetch();
+
   return {
     messages,
     users,
+    usersByAbility,
+    usersByTime,
     ready,
   };
 })(Connect);
