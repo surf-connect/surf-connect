@@ -16,7 +16,7 @@ const calculateAbility = (minWaveHeight, maxWaveHeight) => {
 };
 
 /** Makes several API calls to the Surfline API to receive wave, tide, tide, and weather data for a spot. */
-export const surfData = async (spotId, spotName, spotImage) => {
+export const updateSurfData = async (spotId, spotName, spotImage) => {
   // Makes API call to receive wave data for the spot given.
   const waveInfo = await fetch(`https://services.surfline.com/kbyg/spots/forecasts/wave?spotId=${spotId}&days=1&intervalHours=24&maxHeights=false&sds=false`);
   const waveInfoToJson = await waveInfo.json();
