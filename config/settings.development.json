@@ -16,7 +16,10 @@
 
   "defaultUsers": [
     { "name": "Admin", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello", "time": "12:00pm", "ability": 1, "owner": "admin@foo.com" },
-    { "name": "John", "image": "https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg", "description": "Hello, my name is John", "time": "3:00pm", "ability": 4, "owner": "john@foo.com" }
+    { "name": "John", "image": "https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg", "description": "Hi, I'm Jay and I'm pretty good at surfing. I usually use a short board but I also like longboards. I'm looking for people to go to north shore this weekend", "time": "3:00pm", "ability": 4, "owner": "jay@foo.com" },
+    { "name": "John", "image": "https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg", "description": "Aloha! I am Jenny and I'm a beginner surfer looking for people who can teach me surf!", "time": "5:00pm", "ability": 1, "owner": "jenny@foo.com" },
+    { "name": "John", "image": "https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg", "description": "Hello, my name is John", "time": "1:00pm", "ability": 2, "owner": "john@foo.com" },
+    { "name": "John", "image": "https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg", "description": "Hello, my name is John", "time": "3:00pm", "ability": 4, "owner": "john@foo.com" },
   ],
 
   "defaultData": [
