@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Messages } from '../../api/message/Message';
 import { Users } from '../../api/user/Users';
-import { Locations } from '../../api/location/Location';
 
 /* eslint-disable no-console */
 
