@@ -28,11 +28,22 @@ const formSchema = new SimpleSchema({
 
 // Converts schema into a schema for uniforms.
 const bridge = new SimpleSchema2Bridge(formSchema);
+let abilityFilter = 1;
+let timeFilter = '12:00am';
 
 /** Renders a page which shows all users connected to a user based on similar filters.
  * The user is able to click the messages accordion to view all their messages and reply.
  * They are also able to message users they are connected to. They can also click the filters accordian and fill out a form to update their filters. */
 class Connect extends React.Component {
+
+  // On submit, filter users.
+  submit(data) {
+    const { ability, time } = data;
+    console.log(ability);
+    console.log(time);
+    abilityFilter = ability;
+    timeFilter = time;
+  }
 
   // Sets state for each accordian. When pressed, the state changes.
   state = { activeState: 0 };
@@ -82,17 +93,17 @@ class Connect extends React.Component {
         <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.usersByTimeAndAbility.map(user => <UserDisplay key={user.name} user={user} />)}
+          {this.props.users.map(user => <UserDisplay key={user.name} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.usersByAbility.map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.ability === abilityFilter).map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.usersByTime.map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.time === timeFilter).map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
           <Accordion fluid styled id='user-messages'>
@@ -120,7 +131,7 @@ class Connect extends React.Component {
               <Segment>
                 <Header>Filters:</Header>
                 <Divider />
-                <AutoForm schema={bridge}>
+                <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
                   <SelectField name='ability' />
                   <SelectField name='time' />
                   <SubmitField />
@@ -136,9 +147,7 @@ class Connect extends React.Component {
 
 Connect.propTypes = {
   messages: PropTypes.array.isRequired,
-  usersByAbility: PropTypes.array.isRequired,
-  usersByTime: PropTypes.array.isRequired,
-  usersByTimeAndAbility: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -156,20 +165,10 @@ export default withTracker(() => {
   const messages = Messages.collection.find({}).fetch();
   // Get the user documents
   const currentUser = Meteor.user() ? Meteor.user().username : '';
-
-  const ability = 1;
-  const usersByAbility = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { ability: ability }] }).fetch();
-
-  const time = '12:00pm';
-  const usersByTime = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { time: time }] }).fetch();
-
-  const usersByTimeAndAbility = Users.collection.find({ $and: [{ owner: { $not: currentUser } }, { $and: [{ time: time }, { ability: ability }] }] }).fetch();
-
+  const users = Users.collection.find({ owner: { $not: currentUser } }).fetch();
   return {
     messages,
-    usersByAbility,
-    usersByTime,
-    usersByTimeAndAbility,
+    users,
     ready,
   };
 })(Connect);
