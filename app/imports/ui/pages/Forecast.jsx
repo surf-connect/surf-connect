@@ -24,18 +24,16 @@ class Forecast extends React.Component {
               <Table.HeaderCell>Tide</Table.HeaderCell>
               <Table.HeaderCell>Wind</Table.HeaderCell>
               <Table.HeaderCell>Swells</Table.HeaderCell>
-              <Table.HeaderCell>Water Temp</Table.HeaderCell>
               <Table.HeaderCell>Weather</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {this.props.locations.map(location => <Table.Row style={ { backgroundImage: `url(${(location.image)})`, backgroundSize: 'cover', height: '100px', backgroundPosition: 'center' } } key={location.name}>
               <Table.Cell>{location.name}</Table.Cell>
-              <Table.Cell>{location.surf} ft+</Table.Cell>
-              <Table.Cell>{location.tide} ft</Table.Cell>
+              <Table.Cell>{location.surf}</Table.Cell>
+              <Table.Cell>{location.tide}</Table.Cell>
               <Table.Cell>{location.wind} kts</Table.Cell>
               <Table.Cell>{location.swells} ft</Table.Cell>
-              <Table.Cell>{location.wTemp} &deg;F</Table.Cell>
               <Table.Cell>{location.weather} &deg;F</Table.Cell>
             </Table.Row>)}
           </Table.Body>

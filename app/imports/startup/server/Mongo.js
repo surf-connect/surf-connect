@@ -11,7 +11,7 @@ function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Stuffs.collection.insert(data);
 }
-
+/*
 function addLoc(data) {
   console.log(`Adding Location: ${data.name}`);
   Locations.collection.insert(data);
@@ -22,7 +22,7 @@ if (Locations.collection.find().count() === 0) {
     console.log('Creating default data.');
     Meteor.settings.defaultLocation.map(data => addLoc(data));
   }
-}
+} */
 
 // Initialize the StuffsCollection if empty.
 if (Stuffs.collection.find().count() === 0) {
