@@ -10,39 +10,10 @@ import UserDisplay from '../components/UserDisplay';
 import Message from '../components/Message';
 import { Users } from '../../api/user/Users';
 
-// Schema for filters form.
-const formSchema = new SimpleSchema({
-  ability: {
-    type: Number,
-    allowedValues: [1, 2, 3, 4, 5],
-    defaultValue: 1,
-  },
-  time: {
-    type: String,
-    allowedValues: ['12:00am', '1:00am', '2:00am', '3:00am', '4:00am', '5:00am', '6:00am', '7:00am', '8:00am', '9:00am',
-      '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm'],
-    defaultValue: '12:00am',
-  },
-});
-
-// Converts schema into a schema for uniforms.
-const bridge = new SimpleSchema2Bridge(formSchema);
-let abilityFilter = 1;
-let timeFilter = '12:00am';
-
 /** Renders a page which shows all users connected to a user based on similar filters.
  * The user is able to click the messages accordion to view all their messages and reply.
  * They are also able to message users they are connected to. They can also click the filters accordian and fill out a form to update their filters. */
 class Connect extends React.Component {
-
-  // On submit, filter users.
-  submit(data) {
-    const { ability, time } = data;
-    abilityFilter = Number(ability);
-    timeFilter = String(time);
-    this.forceUpdate();
-  }
-
   // Sets state for each accordian. When pressed, the state changes.
   state = { activeState: 0 };
 
