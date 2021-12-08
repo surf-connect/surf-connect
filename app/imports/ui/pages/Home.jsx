@@ -19,7 +19,7 @@ class Home extends React.Component {
     const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '50px' };
     // Sets CSS for filters.
     // eslint-disable-next-line no-undef
-    const lucky = _.sample(this.props.userInfo, 1);
+    const lucky = _.sample(this.props.userInfo, 3);
     // eslint-disable-next-line no-undef
     const suggestion = _.sample(this.props.sub, 3);
     return (

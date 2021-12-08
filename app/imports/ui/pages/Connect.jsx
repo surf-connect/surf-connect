@@ -35,7 +35,7 @@ class Connect extends React.Component {
     const { activeIndex } = this.state;
 
     // Sets CSS for header.
-    const headerStyle = { padding: '20px', fontFamily: 'Original Surfer, cursive' };
+    const headerStyle = { padding: '20px', fontFamily: 'Original Surfer, cursive', marginTop: '50px' };
 
     // Sets CSS for message button.
     const messageStyle = {

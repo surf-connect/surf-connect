@@ -11,7 +11,7 @@ import { Users } from '../../api/user/Users';
 class Suggestions extends React.Component {
 
   render() {
-    const headerStyle = { fontFamily: 'Original Surfer, cursive' };
+    const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '50px' };
     return (
       <Container textAlign='center' id='suggestion-page'>
         <Header as='h1' style={headerStyle}>Surf Suggestions</Header>
