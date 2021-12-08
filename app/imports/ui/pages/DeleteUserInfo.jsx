@@ -15,8 +15,8 @@ class DeleteUserInfo extends React.Component {
 
   // On confirm, remove the data.
   confirm(data) {
-    const { name, image, description, time, ability, _id } = data;
-    Users.collection.remove(_id, { $set: { name, image, description, time, ability } }, (error) => (error ?
+    const { _id } = data;
+    Users.collection.remove(_id, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Profile deleted successfully', 'success')));
   }
