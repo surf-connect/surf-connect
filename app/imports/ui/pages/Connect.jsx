@@ -39,8 +39,8 @@ class Connect extends React.Component {
   // On submit, filter users.
   submit(data) {
     const { ability, time } = data;
-    abilityFilter = ability;
-    timeFilter = time;
+    abilityFilter = Number(ability);
+    timeFilter = String(time);
     this.forceUpdate();
   }
 
