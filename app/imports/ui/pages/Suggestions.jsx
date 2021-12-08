@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Divider, Feed, Header, Segment, Dropdown } from 'semantic-ui-react';
+import { Container, Divider, Feed, Header, Segment, Accordion } from 'semantic-ui-react';
 import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -19,10 +19,33 @@ const formSchema = new SimpleSchema({
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
+let abilityFilter = 1;
+
 /** Renders a page that shows all of the suggestions for a user based on their surfing ability. */
 class Suggestions extends React.Component {
 
+  // On submit, filter suggestions.
+  submit(data) {
+    abilityFilter = Number(data.ability);
+    this.forceUpdate();
+  }
+
+  // Sets state for each accordian. When pressed, the state changes.
+  state = { activeState: 0 };
+
+  // Handle click for accordians.
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    let newIndex = index;
+    if (activeIndex === index) {
+      newIndex = -1;
+    }
+    this.setState({ activeIndex: newIndex });
+  }
+
   render() {
+    const { activeIndex } = this.state;
 
     // Sets CSS for header.
     const headerStyle = { fontFamily: 'Original Surfer, cursive' };
@@ -30,8 +53,8 @@ class Suggestions extends React.Component {
     // Sets CSS for filters.
     const filterStyle = {
       position: 'absolute',
-      top: '93px',
-      left: '-90px',
+      top: '75px',
+      left: '30px',
       width: '300px',
       zIndex: 1,
     };
@@ -40,21 +63,27 @@ class Suggestions extends React.Component {
         <Header as='h1' style={headerStyle}>Surf Suggestions</Header>
         <Divider />
         <Feed>
-          {this.props.sub.map(suggestion => <SurfSuggestion key={suggestion.name} suggestion={suggestion} />)}
+          {(this.props.sub.filter(suggestion => suggestion.ability === abilityFilter)).map(suggestion => <SurfSuggestion key={suggestion.name} suggestion={suggestion} />)}
         </Feed>
         <div style={filterStyle}>
-          <Dropdown text='Filters'>
-            <Dropdown.Menu>
+          <Accordion>
+            <Accordion.Title
+              active={activeIndex === 1}
+              index={1}
+              onClick={this.handleClick} >
+              Filters
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 1} >
               <Segment>
                 <Header>Filters:</Header>
                 <Divider />
-                <AutoForm schema={bridge}>
+                <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
                   <SelectField name='ability' />
                   <SubmitField />
                 </AutoForm>
               </Segment>
-            </Dropdown.Menu>
-          </Dropdown>
+            </Accordion.Content>
+          </Accordion>
         </div>
       </Container>
     );
