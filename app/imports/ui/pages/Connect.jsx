@@ -89,11 +89,6 @@ class Connect extends React.Component {
 
     return (
       <Container textAlign='center' id='connect-page'>
-        <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
-        <Divider />
-        <Card.Group stackable centered>
-          {this.props.users.filter(user => (user.ability === abilityFilter && user.time === timeFilter)).map(user => <UserDisplay key={user._id} user={user} />)}
-        </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
