@@ -39,10 +39,9 @@ class Connect extends React.Component {
   // On submit, filter users.
   submit(data) {
     const { ability, time } = data;
-    console.log(ability);
-    console.log(time);
-    abilityFilter = ability;
-    timeFilter = time;
+    abilityFilter = Number(ability);
+    timeFilter = String(time);
+    this.forceUpdate();
   }
 
   // Sets state for each accordian. When pressed, the state changes.
@@ -93,7 +92,7 @@ class Connect extends React.Component {
         <Header as='h3' style={headerStyle}>Users Connected By Time and Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.map(user => <UserDisplay key={user.name} user={user} />)}
+          {this.props.users.filter(user => (user.ability === abilityFilter && user.time === timeFilter)).map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
