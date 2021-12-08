@@ -21,6 +21,7 @@ class UserDisplay extends React.Component {
 
   render() {
     const descStyle = { height: '50px' };
+    const buttonStyle = { width: '250px' };
     return (
       <Card>
         <Card.Content>
@@ -33,24 +34,14 @@ class UserDisplay extends React.Component {
           <Card.Description style={descStyle}>{this.props.user.description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <div className='two ui buttons'>
-            <Button animated basic color='red'>
-              <Button.Content visible>
-                <Icon name='like'/>
-              </Button.Content>
-              <Button.Content hidden>
-                Like profile
-              </Button.Content>
-            </Button>
-            <Button animated basic color='blue' id='message-click' onClick={() => this.buttonClick()}>
-              <Button.Content visible>
-                <Icon name='chat'/>
-              </Button.Content>
-              <Button.Content hidden>
-                Message user
-              </Button.Content>
-            </Button>
-          </div>
+          <Button style={buttonStyle} animated basic color='blue' id='message-click' onClick={() => this.buttonClick()}>
+            <Button.Content visible>
+              <Icon name='chat'/>
+            </Button.Content>
+            <Button.Content hidden>
+              Message user
+            </Button.Content>
+          </Button>
         </Card.Content>
         {/* Creates a MesssageForm component and sets messageView to the state that it is at. */}
         {<MessageForm user={this.props.user} messageView={this.state.messageView} />}
