@@ -30,7 +30,7 @@
 
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Rob@gmail.com", "password": "12345" },
-    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Sarah@gmail.com", "password": "1014" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
@@ -47,6 +47,7 @@
   ],
 
   "defaultUsers": [
+    { "name": "Sarah", "image": "https://cdn.pixabay.com/photo/2013/02/21/19/13/agriculture-84702_960_720.jpg", "description": "I'm Sarah and I am looking for a surf bud", "time": "12:00pm", "ability": 2, "owner": "Sarah@gmail.com" },
     { "name": "Rob", "image": "https://cdn.pixabay.com/photo/2021/11/26/02/39/dog-6824999_960_720.jpg", "description": "My name is Rob and I am a semi pro looking for a buddy to go NS.", "time": "2:00pm", "ability": 3, "owner": "Rob@gmail.com" },
     { "name": "Kylie", "image": "https://cdn.pixabay.com/photo/2016/11/19/10/30/beach-1838501_960_720.jpg", "description": "Hey, I'm new to surfing, looking forward to someone who can teach me.", "time": "1:00pm", "ability": 1, "owner": "Kylie@gmail.com" },
     { "name": "Admin", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello", "time": "12:00pm", "ability": 1, "owner": "admin@foo.com" },
