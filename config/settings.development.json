@@ -26,7 +26,24 @@
     { "email": "LKayKay@gmail.com", "password": "SurferGirl200" },
     { "email": "Howard@gmail.com", "password": "12345" },
     { "email": "James@gmail.com", "password": "Sandys" },
-    { "email": "Joe@gmail.com", "password": "Surf" }
+    { "email": "Joe@gmail.com", "password": "Surf" },
+
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Rob@gmail.com", "password": "12345" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Kylie@gmail.com", "password": "kylie" }
+
   ],
 
   "defaultUsers": [
