@@ -37,7 +37,7 @@
     { "email": "Kai@gmail.com", "password": "dgssdg" },
     { "email": "Russell@gmail.com", "password": "8a4dad" },
     { "email": "Peter@gmail.com", "password": "23984hsfn" },
-    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Henry@gmail.com", "password": "345gdg" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
@@ -47,6 +47,7 @@
   ],
 
   "defaultUsers": [
+    { "name": "Henry", "image": "https://cdn.pixabay.com/photo/2017/05/31/18/38/sea-2361247_960_720.jpg", "description": "going to bowls later lmk if youre down", "time": "3:00pm", "ability": 4, "owner": "Henry@gmail.com" },
     { "name": "Peter", "image": "https://cdn.pixabay.com/photo/2017/05/31/18/38/sea-2361247_960_720.jpg", "description": "hit me up", "time": "6:00pm", "ability": 2, "owner": "Peter@gmail.com" },
     { "name": "Russell", "image": "https://cdn.pixabay.com/photo/2013/12/17/20/10/bubbles-230014_960_720.jpg", "description": "yo lets go surfing", "time": "6:00pm", "ability": 4, "owner": "Russell@gmail.com" },
     { "name": "Kai", "image": "https://cdn.pixabay.com/photo/2016/10/18/21/22/beach-1751455_960_720.jpg", "description": "Aloha, I am Kai, looking for someone to go surfing later", "time": "2:00pm", "ability": 3, "owner": "Kai@gmail.com" },
