@@ -39,7 +39,7 @@
     { "email": "Peter@gmail.com", "password": "23984hsfn" },
     { "email": "Henry@gmail.com", "password": "345gdg" },
     { "email": "Kailani@gmail.com", "password": "uhs883" },
-    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Tiffany@gmail.com", "password": "234fsef3" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" }
@@ -47,6 +47,7 @@
   ],
 
   "defaultUsers": [
+    { "name": "Tiffany", "image": "https://cdn.pixabay.com/photo/2016/07/21/18/46/surf-1533278_960_720.jpg", "description": "Looking for a surfing squad", "time": "5:00pm", "ability": 4, "owner": "Tiffany@gmail.com" },
     { "name": "Kailani", "image": "https://cdn.pixabay.com/photo/2016/07/21/18/46/surf-1533278_960_720.jpg", "description": "sup", "time": "3:00pm", "ability": 3, "owner": "Kailani@gmail.com" },
     { "name": "Henry", "image": "https://cdn.pixabay.com/photo/2017/05/31/18/38/sea-2361247_960_720.jpg", "description": "going to bowls later lmk if youre down", "time": "3:00pm", "ability": 4, "owner": "Henry@gmail.com" },
     { "name": "Peter", "image": "https://cdn.pixabay.com/photo/2017/05/31/18/38/sea-2361247_960_720.jpg", "description": "hit me up", "time": "6:00pm", "ability": 2, "owner": "Peter@gmail.com" },
