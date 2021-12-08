@@ -11,21 +11,7 @@ import { Users } from '../../api/user/Users';
 class Suggestions extends React.Component {
 
   render() {
-    // Sets CSS for header.
-<<<<<<< Updated upstream
-    const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '100px' };
-
-    // Sets CSS for filters.
-    const filterStyle = {
-      position: 'absolute',
-      top: '75px',
-      left: '30px',
-      width: '300px',
-      zIndex: 1,
-    };
-=======
     const headerStyle = { fontFamily: 'Original Surfer, cursive' };
->>>>>>> Stashed changes
     return (
       <Container textAlign='center' id='suggestion-page'>
         <Header as='h1' style={headerStyle}>Surf Suggestions</Header>
