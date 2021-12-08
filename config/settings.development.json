@@ -33,7 +33,7 @@
     { "email": "Sarah@gmail.com", "password": "1014" },
     { "email": "Cody@gmail.com", "password": "absuhfk" },
     { "email": "Michael@gmail.com", "password": "dsfgjhn" },
-    { "email": "Kylie@gmail.com", "password": "kylie" },
+    { "email": "Bob@gmail.com", "password": "sgtdgdsrg" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
     { "email": "Kylie@gmail.com", "password": "kylie" },
@@ -47,6 +47,7 @@
   ],
 
   "defaultUsers": [
+    { "name": "Bob", "image": "https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_960_720.jpg", "description": "I'm new to surfing, need a surfing bud", "time": "3:00pm", "ability": 1, "owner": "Michael@gmail.com" },
     { "name": "Michael", "image": "https://cdn.pixabay.com/photo/2013/07/18/20/26/sea-164989_960_720.jpg", "description": "I'm new to surfing, need a surfing bud", "time": "4:00pm", "ability": 1, "owner": "Michael@gmail.com" },
     { "name": "Cody", "image": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg", "description": "Let's go surfing!", "time": "4:00pm", "ability": 3, "owner": "Cody@gmail.com" },
     { "name": "Sarah", "image": "https://cdn.pixabay.com/photo/2013/02/21/19/13/agriculture-84702_960_720.jpg", "description": "I'm Sarah and I am looking for a surf bud", "time": "12:00pm", "ability": 2, "owner": "Sarah@gmail.com" },
