@@ -25,7 +25,7 @@ class SendMessage extends React.Component {
     const owner = Meteor.user().username;
     // Inserts a new Message document with the specified receiver and sender.
     Messages.collection.insert({ sender: owner, receiver: this.props.receiver,
-      image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80', message: message }, (error) => {
+      image: this.props.image, message: message }, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
@@ -54,6 +54,7 @@ class SendMessage extends React.Component {
 // Require a document to be passed to this component.
 SendMessage.propTypes = {
   receiver: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   messageType: PropTypes.string.isRequired,
 };
 
