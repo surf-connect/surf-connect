@@ -47,6 +47,7 @@
   ],
 
   "defaultUsers": [
+    { "name": "Kylie", "image": "https://cdn.pixabay.com/photo/2016/11/19/10/30/beach-1838501_960_720.jpg", "description": "Hey, I'm new to surfing, looking forward to someone who can teach me.", "time": "1:00pm", "ability": 1, "owner": "Kylie@gmail.com" },
     { "name": "Admin", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello", "time": "12:00pm", "ability": 1, "owner": "admin@foo.com" },
     { "name": "John", "image": "https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg", "description": "Hello, my name is John", "time": "3:00pm", "ability": 4, "owner": "john@foo.com" },
     { "name": "Charlie", "image": "https://cdn.pixabay.com/photo/2017/04/08/10/23/surfing-2212948__340.jpg", "description": "My name is Charlie and I love to bodyboard at Sandys!", "time": "4:00pm", "ability": 3, "owner": "charlierobison480@gmail.com" },
