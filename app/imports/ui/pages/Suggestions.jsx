@@ -48,7 +48,7 @@ class Suggestions extends React.Component {
     const { activeIndex } = this.state;
 
     // Sets CSS for header.
-    const headerStyle = { fontFamily: 'Original Surfer, cursive' };
+    const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '100px' };
 
     // Sets CSS for filters.
     const filterStyle = {
