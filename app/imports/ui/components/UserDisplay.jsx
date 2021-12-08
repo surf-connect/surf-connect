@@ -58,6 +58,7 @@ UserDisplay.propTypes = {
     time: PropTypes.string,
     ability: PropTypes.number,
     description: PropTypes.string,
+    owner: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };

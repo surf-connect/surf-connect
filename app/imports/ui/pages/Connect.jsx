@@ -1,9 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Divider, Segment, Loader, Accordion } from 'semantic-ui-react';
+import { Container, Card, Header, Divider, Loader, Accordion } from 'semantic-ui-react';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoForm, SelectField, SubmitField } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Messages } from '../../api/message/Message';
@@ -77,27 +76,17 @@ class Connect extends React.Component {
       width: '300px',
       zIndex: 2,
     };
-
-    // Sets CSS for filters.
-    const filterStyle = {
-      position: 'absolute',
-      top: '93px',
-      left: '20px',
-      width: '300px',
-      zIndex: 1,
-    };
-
     return (
       <Container textAlign='center' id='connect-page'>
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.filter(user => user.ability === abilityFilter).map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.ability === this.props.currentUser[0].ability).map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.filter(user => user.time === timeFilter).map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.time === this.props.currentUser[0].time).map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
           <Accordion fluid styled id='user-messages'>
@@ -113,27 +102,6 @@ class Connect extends React.Component {
             </Accordion.Content>
           </Accordion>
         </div>
-        <div style={filterStyle}>
-          <Accordion>
-            <Accordion.Title
-              active={activeIndex === 1}
-              index={1}
-              onClick={this.handleClick} >
-              Filters
-            </Accordion.Title>
-            <Accordion.Content active={activeIndex === 1} >
-              <Segment>
-                <Header>Filters:</Header>
-                <Divider />
-                <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
-                  <SelectField name='ability' />
-                  <SelectField name='time' />
-                  <SubmitField />
-                </AutoForm>
-              </Segment>
-            </Accordion.Content>
-          </Accordion>
-        </div>
       </Container>
     );
   }
@@ -141,6 +109,7 @@ class Connect extends React.Component {
 
 Connect.propTypes = {
   messages: PropTypes.array.isRequired,
+  currentUser: PropTypes.array.isRequired,
   users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -158,10 +127,14 @@ export default withTracker(() => {
   // Get the Message documents
   const messages = Messages.collection.find({}).fetch();
   // Get the user documents
-  const currentUser = Meteor.user() ? Meteor.user().username : '';
-  const users = Users.collection.find({ owner: { $not: currentUser } }).fetch();
+  const currUser = Meteor.user() ? Meteor.user().username : '';
+  // Gets all users other than the current user.
+  const users = Users.collection.find({ owner: { $not: currUser } }).fetch();
+  // Gets current user.
+  const currentUser = Users.collection.find({ owner: currUser }).fetch();
   return {
     messages,
+    currentUser,
     users,
     ready,
   };

@@ -52,7 +52,6 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe(Locations.userPublicationName);
   const ready = subscription.ready();
   const locations = Locations.collection.find({}).fetch();
-  console.log(`Locations: ${locations}`);
   return {
     ready,
     locations,
