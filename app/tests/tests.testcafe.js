@@ -88,7 +88,6 @@ test('Test the connect page', async (testController) => {
   await navBar.gotoConnectPage(testController);
   await connectPage.isDisplayed(testController);
   await connectPage.createMessage(testController, 'New Message');
-  await connectPage.checkMessages(testController);
 });
 
 test('Test the suggestions page', async (testController) => {
