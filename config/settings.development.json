@@ -12,6 +12,7 @@
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" },
     { "email": "test@foo.com", "password": "changeme" },
+    { "email": "new@foo.com", "password": "changeme" },
     { "email": "charlierobison480@gmail.com", "password": "Surfer123" },
     { "email": "Ian@gmail.com", "password": "IanSurf" },
     { "email": "Jonathan@gmail.com", "password": "Surfer2" },
