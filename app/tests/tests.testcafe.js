@@ -9,7 +9,6 @@ import { deleteuserinfoPage } from './deleteuserinfo.page';
 import { forecastPage } from './forecast.page';
 import { connectPage } from './connect.page';
 import { suggestionsPage } from './suggestions.page';
-import { testFlowVersion } from 'eslint-plugin-react/lib/util/version';
 
 /* global fixture:false, test:false */
 
