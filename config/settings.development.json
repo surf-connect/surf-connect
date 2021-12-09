@@ -5,7 +5,7 @@
   },
 
   "defaultMessages": [
-    { "sender": "charlierobison480@gmail.com", "receiver": "john@foo.com", "image": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VyZmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80", "message": "Whats up bro!" }
+    { "sender": "john@foo.com", "receiver": "test@foo.com", "image": "https://cdn.pixabay.com/photo/2013/12/17/20/10/bubbles-230014_960_720.jpg", "message": "Whats up bro!" }
   ],
 
   "defaultAccounts": [
@@ -47,6 +47,8 @@
   ],
 
   "defaultUsers": [
+    { "name": "Admin", "image": "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg", "description": "Hello", "time": "12:00pm", "ability": 1, "owner": "admin@foo.com" },
+    { "name": "Billy Jeans", "image": "https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg", "description": "Hello my name is Billy!", "time": "12:00pm", "ability": 1, "owner": "test@foo.com" },
     { "name": "Janna", "image": "https://cdn.pixabay.com/photo/2014/09/21/03/13/boy-454633_960_720.jpg", "description": "Just here to meet new people!", "time": "9:00am", "ability": 4, "owner": "Janna@gmail.com" },
     { "name": "John", "image": "https://cdn.pixabay.com/photo/2017/04/01/15/05/big-waves-2193828_960_720.jpg", "description": "I am a pro surfer looking for students", "time": "10:00am", "ability": 5, "owner": "John@gmail.com" },
     { "name": "Bryan", "image": "https://cdn.pixabay.com/photo/2019/03/28/14/34/surf-4087278_960_720.jpg", "description": "Hi, I'm new to surfing", "time": "11:00am", "ability": 1, "owner": "Bryan@gmail.com" },
@@ -78,12 +80,5 @@
     { "name": "Howard", "image": "https://cdn.pixabay.com/photo/2016/11/19/12/11/surfer-1838958__340.jpg", "description": "OK, I need someone to go to Waimea with now!!!", "time": "12:00pm", "ability": 5, "owner": "Howard@gmail.com" },
     { "name": "James Jr.", "image": "https://cdn.pixabay.com/photo/2020/01/25/23/44/sports-4793605__480.jpg", "description": "We catching waves at Sandy's or what?", "time": "7:00am", "ability": 3, "owner": "James@gmail.com" },
     { "name": "Joe", "image": "https://cdn.pixabay.com/photo/2017/02/22/16/11/surfer-2089817__480.jpg", "description": "Im ok, but I want to take it to the next level!", "time": "5:00pm", "ability": 2, "owner": "Joe@gmail.com" }
-  ],
-
-  "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ]
 }
