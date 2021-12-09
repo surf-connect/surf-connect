@@ -88,9 +88,6 @@ export default withTracker(() => {
   // Get access to Message and User documents.
   const subscription = Meteor.subscribe(Messages.userPublicationName);
   const subscription2 = Meteor.subscribe(Users.userPublicationName);
-
-  // console.log(`Username: ${Messages.userPublicationName}`);
-
   // Determine if the subscription is ready
   const ready = subscription.ready() && subscription2.ready();
   // Get the Message documents
