@@ -12,8 +12,10 @@ class SuggestionsPage {
     await testController.wait(10000).expect(this.pageSelector.exists).ok();
   }
 
+  /** Checks if the number of suggestions for the user is greater than or equal to 1. */
   async correctSuggestions(testController) {
-    
+    const suggestionsCount = Selector('h2').count;
+    await testController.expect(suggestionsCount).gte(1);
   }
 }
 

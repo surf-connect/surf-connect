@@ -20,6 +20,13 @@ class ConnectPage {
     await testController.typeText('#message-form', message);
     await testController.click('#send-message');
   }
+
+  /** Checks if the correct message appears in the test user's messages. */
+  async checkMessages(testController) {
+    await testController.click('#user-messages');
+    const numberOfMessages = Selector('p').withText('Whats up bro!').count;
+    await testController.expect(numberOfMessages).eql(1);
+  }
 }
 
 export const connectPage = new ConnectPage();
