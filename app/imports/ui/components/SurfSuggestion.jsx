@@ -18,7 +18,7 @@ class SurfSuggestion extends React.Component {
       WebkitTextStroke: '1px black',
     };
     return (
-      <Segment>
+      <Segment id={'suggestion'}>
         <Grid columns={3} style={segmentStyle}>
           <Grid.Column>
             <Header as='h1' style={headerStyle} inverted>{this.props.suggestion.name}</Header>

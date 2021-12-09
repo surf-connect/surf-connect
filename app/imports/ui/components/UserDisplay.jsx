@@ -23,7 +23,7 @@ class UserDisplay extends React.Component {
     const descStyle = { height: '50px' };
     const buttonStyle = { width: '250px' };
     return (
-      <Card>
+      <Card id={'user-card'}>
         <Card.Content>
           <Card.Header>{this.props.user.name}</Card.Header>
           <Card.Meta>{this.props.user.time}</Card.Meta>

@@ -19,7 +19,7 @@ class NavBar extends React.Component {
           <Header inverted as='h2' style={headerStyle}>Surf Connect</Header>
         </Menu.Item>)}
         {this.props.currentUser ? (
-          [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
+          [<Menu.Item as={NavLink} id={'home'} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
             <Menu.Item as={NavLink} id='locations-page' activeClassName="active" exact to="/locations" key='locations'>Surf Forecast</Menu.Item>,
             <Menu.Item as={NavLink} id="connect-page" activeClassName="active" exact to="/connect" key='connect'>Connect</Menu.Item>,
             <Menu.Item as={NavLink} id="suggestions-page" activeClassName="active" exact to="/suggestions" key='suggestions'>Suggestions</Menu.Item>]

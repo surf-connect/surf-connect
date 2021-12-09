@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-class ForecastPage {
+class HomePage {
   constructor() {
     this.pageId = '#home';
     this.pageSelector = Selector(this.pageId);
@@ -14,11 +14,11 @@ class ForecastPage {
 
   /** Asserts that this page has a table at least one row. */
   async hasTable(testController) {
-    const rowCount = Selector('tr').count;
-    const columnCount = Selector('th').count;
-    await testController.expect(rowCount).gte(1);
-    await testController.expect(columnCount).eql(6);
+    const rowCount = Selector('suggestion').count;
+    const columnCount = Selector('user-card').count;
+    await testController.expect(rowCount).gte(0);
+    await testController.expect(columnCount).eql(0);
   }
 }
 
-export const forecastPage = new ForecastPage();
+export const homePage = new HomePage();

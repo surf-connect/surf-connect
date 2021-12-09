@@ -9,6 +9,7 @@ import { deleteuserinfoPage } from './deleteuserinfo.page';
 import { forecastPage } from './forecast.page';
 import { connectPage } from './connect.page';
 import { suggestionsPage } from './suggestions.page';
+import { homePage } from './home.page';
 
 /* global fixture:false, test:false */
 
@@ -32,7 +33,13 @@ test('Test that signin and signout work', async (testController) => {
   await navBar.logout(testController);
   await signoutPage.isDisplayed(testController);
 });
-
+test('Test the home page', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoHomePage(testController);
+  await homePage.isDisplayed(testController);
+  await homePage.hasTable(testController);
+});
 test('Test the forecast page', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
