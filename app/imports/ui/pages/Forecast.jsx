@@ -12,7 +12,7 @@ class Forecast extends React.Component {
   }
 
   renderPage() {
-    const style = { marginTop: '50px' };
+    const style = { marginTop: '50px', fontFamily: 'Original Surfer, cursive' };
     return (
       <Container id='forecast-page'>
         <Header as='h1' style={style} textAlign='center'>Oahu Surf Forecast</Header>

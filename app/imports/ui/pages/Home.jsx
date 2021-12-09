@@ -23,7 +23,7 @@ class Home extends React.Component {
     // eslint-disable-next-line no-undef
     const suggestion = _.sample(this.props.sub, 3);
     return (
-      <Container textAlign='center'>
+      <Container id={'home'} textAlign='center'>
         <Header as='h1' style={headerStyle}>Location Suggestions</Header>
         <Divider />
 
