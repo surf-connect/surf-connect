@@ -14,8 +14,9 @@ class UserPage {
 
   /** Asserts that this page has a table with four rows. */
   async hasTable(testController) {
+    await this.isDisplayed(testController);
     const rowCount = Selector('tr').count;
-    await testController.expect(rowCount).gte(4);
+    await testController.expect(rowCount).eql(4);
   }
 
   /** Clicks on the edit profile button. */

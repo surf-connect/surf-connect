@@ -15,7 +15,9 @@ class ForecastPage {
   /** Asserts that this page has a table at least one row. */
   async hasTable(testController) {
     const rowCount = Selector('tr').count;
+    const columnCount = Selector('th').count;
     await testController.expect(rowCount).gte(1);
+    await testController.expect(columnCount).eql(6);
   }
 }
 

@@ -15,6 +15,14 @@ class DeleteuserinfoPage {
   /** Clicks on the delete profile button. */
   async deleteProfile(testController) {
     await testController.click('#confirm-delete-profile');
+    await testController.click('.swal-button-container');
+  }
+
+  /** Asserts that this page has a form. */
+  async hasForm(testController) {
+    await this.isDisplayed(testController);
+    const inputCount = Selector('form').count;
+    await testController.expect(inputCount).eql(1);
   }
 }
 
