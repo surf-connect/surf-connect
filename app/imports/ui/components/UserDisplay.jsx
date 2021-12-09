@@ -44,7 +44,7 @@ class UserDisplay extends React.Component {
           </Button>
         </Card.Content>
         {/* Creates a MesssageForm component and sets messageView to the state that it is at. */}
-        {<MessageForm user={this.props.user} messageView={this.state.messageView} />}
+        {<MessageForm user={this.props.user} messageView={this.state.messageView} senderImage={this.props.senderImage}/>}
       </Card>
     );
   }
@@ -61,6 +61,7 @@ UserDisplay.propTypes = {
     owner: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
+  senderImage: PropTypes.string.isRequired,
 };
 
 export default withRouter(UserDisplay);

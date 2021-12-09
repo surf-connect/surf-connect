@@ -14,7 +14,7 @@ class MessageForm extends React.Component {
         <Card.Content>
           {/* Creates the SendMessage component which is a form the user can fill out and send to another user. */}
           {/* The receiver of the message is the user's name from their user suggestion card on the connect page. */}
-          <SendMessage key={this.props.user._id} receiver={this.props.user.owner} image={this.props.user.image} messageType={'Message'}/>
+          <SendMessage key={this.props.user._id} receiver={this.props.user.owner} image={this.props.senderImage} messageType={'Message'}/>
         </Card.Content>
       );
     }
@@ -42,6 +42,7 @@ MessageForm.propTypes = {
     owner: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
+  senderImage: PropTypes.string.isRequired,
   messageView: PropTypes.bool.isRequired,
 };
 

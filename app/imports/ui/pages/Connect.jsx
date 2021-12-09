@@ -50,12 +50,12 @@ class Connect extends React.Component {
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.filter(user => user.ability === this.props.currentUser[0].ability).map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.ability === this.props.currentUser[0].ability).map(user => <UserDisplay key={user._id} user={user} senderImage={this.props.currentUser[0].image}/>)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.filter(user => user.time === this.props.currentUser[0].time).map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.time === this.props.currentUser[0].time).map(user => <UserDisplay key={user._id} user={user} senderImage={this.props.currentUser[0].image}/>)}
         </Card.Group>
         <div style={messageStyle}>
           <Accordion fluid styled id='user-messages'>
