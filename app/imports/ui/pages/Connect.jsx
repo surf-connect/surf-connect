@@ -45,17 +45,19 @@ class Connect extends React.Component {
       width: '300px',
       zIndex: 2,
     };
+    const userAbility = (this.props.currentUser.length === 0) ? 1 : (this.props.currentUser[0].ability);
+    const userTime = (this.props.currentUser.length === 0) ? '12:00am' : (this.props.currentUser[0].time);
     return (
       <Container textAlign='center' id='connect-page'>
         <Header as='h3' style={headerStyle}>Users Connected By Surfing Ability</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.filter(user => user.ability === this.props.currentUser[0].ability).map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.ability === userAbility).map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <Header as='h3' style={headerStyle}>Users Connected By Time</Header>
         <Divider />
         <Card.Group stackable centered>
-          {this.props.users.filter(user => user.time === this.props.currentUser[0].time).map(user => <UserDisplay key={user._id} user={user} />)}
+          {this.props.users.filter(user => user.time === userTime).map(user => <UserDisplay key={user._id} user={user} />)}
         </Card.Group>
         <div style={messageStyle}>
           <Accordion fluid styled id='user-messages'>

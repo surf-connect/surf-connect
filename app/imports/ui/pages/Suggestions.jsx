@@ -16,12 +16,13 @@ class Suggestions extends React.Component {
 
   renderPage() {
     const headerStyle = { fontFamily: 'Original Surfer, cursive', marginTop: '50px' };
+    const userAbility = (this.props.currentUser.length === 0) ? 1 : (this.props.currentUser[0].ability);
     return (
       <Container textAlign='center' id='suggestion-page'>
         <Header as='h1' style={headerStyle}>Surf Suggestions</Header>
         <Divider />
         <Feed>
-          {(this.props.sub.filter(suggestion => suggestion.ability === this.props.currentUser[0].ability)).map(suggestion => <SurfSuggestion key={suggestion.name} suggestion={suggestion} />)}
+          {(this.props.sub.filter(suggestion => suggestion.ability === userAbility)).map(suggestion => <SurfSuggestion key={suggestion.name} suggestion={suggestion} />)}
         </Feed>
       </Container>
     );
