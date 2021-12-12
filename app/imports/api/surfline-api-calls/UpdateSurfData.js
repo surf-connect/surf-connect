@@ -48,8 +48,8 @@ export const updateSurfData = async (spotId, spotName, spotImage) => {
     weather: temp,
     ability: ability,
   };
-  // Checks if DB is empty.
-  if (Locations.collection.find({}).count() === 0) {
+  // Checks if location is in DB.
+  if (Locations.collection.find({ name: location.name }).count() === 0) {
     // Adds locations to DB.
     Locations.collection.insert(location);
   } else {
