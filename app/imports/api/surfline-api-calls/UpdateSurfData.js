@@ -51,14 +51,14 @@ export const updateSurfData = async (spotId, spotName, spotImage) => {
   // Checks if DB is empty.
   if (Locations.collection.find({}).count() === 0) {
     // Adds locations to DB.
-    Locations.collection.insert(location);
+    await Locations.collection.insert(location);
+    console.log(`Inserted location: ${spotName} to DB.`);
   } else {
     // Updates LocationCollection with new data from API.
-    Locations.collection.update({ name: spotName }, { $set: location }, (error) => (error ?
+    await Locations.collection.update({ name: spotName }, { $set: location }, (error) => (error ?
       console.log(`Error updating location: ${spotName}`) :
       console.log(`Successfully updated location: ${spotName}`)));
   }
   // Debugging messages on server side.
-  console.log(`Inserted location: ${spotName} to DB.`);
   console.log(`Location data: ${JSON.stringify(location)}`);
 };
