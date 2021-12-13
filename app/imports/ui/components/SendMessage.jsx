@@ -36,12 +36,18 @@ class SendMessage extends React.Component {
   }
 
   render() {
-    const messageBoxSize = {
-      width: '233px',
+    const messageBoxSize = () => {
+      if (this.props.reply) {
+        return { width: '233px' };
+      }
+      return {
+        height: '100px',
+        width: '290px',
+      };
     };
     let fRef = null;
     return (
-      <div style={messageBoxSize}>
+      <div style={messageBoxSize()}>
         <Container>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
             <Segment>
@@ -61,6 +67,7 @@ SendMessage.propTypes = {
   receiver: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   messageType: PropTypes.string.isRequired,
+  reply: PropTypes.bool.isRequired,
 };
 
 export default withRouter(SendMessage);
