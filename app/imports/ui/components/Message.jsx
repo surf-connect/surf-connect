@@ -70,7 +70,7 @@ class Message extends React.Component {
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0} >
             {/* Creates SendMessage component with the receiver of the message being the sender of the last message (reply). */}
-            <SendMessage key={this.props.message._id} receiver={this.props.message.sender} image={this.props.message.image} messageType={'Reply'}/>
+            <SendMessage key={this.props.message._id} receiver={this.props.message.sender} image={this.props.senderImage} messageType={'Reply'}/>
           </Accordion.Content>
         </Accordion>
       </Segment>
@@ -87,6 +87,7 @@ Message.propTypes = {
     message: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
+  senderImage: PropTypes.string.isRequired,
 };
 
 export default withRouter(Message);

@@ -69,7 +69,7 @@ class Connect extends React.Component {
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 0} >
               {/* Gets all messages sent to the user. */}
-              {this.props.messages.map(message => <Message key={message._id} message={message} />)}
+              {this.props.messages.map(message => <Message key={message._id} message={message} senderImage={this.props.currentUser[0].image }/>)}
             </Accordion.Content>
           </Accordion>
         </div>
