@@ -24,3 +24,9 @@
   font-family: 'Original Surfer', cursive;
   font-size: 70px;
 }
+
+.ui.accordion .active.content, .ui.accordion .accordion .active.content {
+  width: 300px;
+  height: 300px;
+  overflow: scroll;
+}
