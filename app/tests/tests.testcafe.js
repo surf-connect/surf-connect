@@ -99,7 +99,7 @@ test('Test the connect page', async (testController) => {
 
 test('Test the suggestions page', async (testController) => {
   await navBar.gotoSigninPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
+  await signinPage.signin(testController, testuser.username, testuser.password);
   await navBar.gotoSuggestionsPage(testController);
   await suggestionsPage.isDisplayed(testController);
 });
