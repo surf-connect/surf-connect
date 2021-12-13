@@ -36,17 +36,22 @@ class SendMessage extends React.Component {
   }
 
   render() {
+    const messageBoxSize = {
+      width: '233px',
+    };
     let fRef = null;
     return (
-      <Container>
-        <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
-          <Segment>
-            <TextField name='message' id='message-form' />
-            <SubmitField value={this.props.messageType} id='send-message' />
-            <ErrorsField/>
-          </Segment>
-        </AutoForm>
-      </Container>
+      <div style={messageBoxSize}>
+        <Container>
+          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
+            <Segment>
+              <TextField name='message' id='message-form' />
+              <SubmitField value={this.props.messageType} id='send-message' />
+              <ErrorsField/>
+            </Segment>
+          </AutoForm>
+        </Container>
+      </div>
     );
   }
 }
