@@ -37,7 +37,7 @@ class Home extends React.Component {
         <Header as='h1' style={headerStyle}>Random Surf Buddy Picks</Header>
         <Divider />
         <Card.Group centered>
-          {lucky.map(user => <UserDisplay key={user.name} user={user} />)}
+          {lucky.map(user => <UserDisplay key={user.name} user={user} senderImage={this.props.currentUser[0].image}/>)}
         </Card.Group>
       </Container>
     );
@@ -45,6 +45,7 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
+  currentUser: PropTypes.array.isRequired,
   userInfo: PropTypes.array.isRequired,
   sub: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -57,11 +58,12 @@ export default withTracker(() => {
   const subscription2 = Meteor.subscribe(Locations.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready() && subscription2.ready();
-  // Get the Stuff documents
+  const currUser = Meteor.user() ? Meteor.user().username : '';
   const sub = Locations.collection.find({}).fetch();
   const userInfo = Users.collection.find({}).fetch();
-
+  const currentUser = Users.collection.find({ owner: currUser }).fetch();
   return {
+    currentUser,
     userInfo,
     ready,
     sub,
