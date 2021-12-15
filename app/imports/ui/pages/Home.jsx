@@ -24,7 +24,7 @@ class Home extends React.Component {
     const suggestion = _.sample(this.props.sub, 3);
     return (
       <Container id={'home'} textAlign='center'>
-        <Header as='h1' style={headerStyle}>Location Suggestions</Header>
+        <Header as='h1' style={headerStyle}>Random Location Suggestions</Header>
         <Divider />
 
         <Grid centered>
@@ -34,7 +34,7 @@ class Home extends React.Component {
             </Feed>
           </Grid.Row>
         </Grid>
-        <Header as='h1' style={headerStyle}>Surf Buddy Picks</Header>
+        <Header as='h1' style={headerStyle}>Random Surf Buddy Picks</Header>
         <Divider />
         <Card.Group centered>
           {lucky.map(user => <UserDisplay key={user.name} user={user} />)}
