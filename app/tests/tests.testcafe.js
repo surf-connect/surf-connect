@@ -18,8 +18,6 @@ const credentials = { username: 'john@foo.com', password: 'changeme' };
 const testuser = { username: 'test@foo.com', password: 'changeme', name: 'New User',
   image: 'https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg', time: '10:00am', ability: 2, description: 'Lets go surfing' };
 
-const newuser = { username: 'new@foo.com', password: 'changeme', name: 'New User', image: 'https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg', time: '10:00am', ability: 2, description: 'Lets go surfing' };
-
 fixture('surf-connect localhost test with default db').page('http://localhost:3000');
 
 test('Test that landing page shows up', async (testController) => {
@@ -49,44 +47,28 @@ test('Test the forecast page', async (testController) => {
 });
 
 test('Test the user pages and forms', async (testController) => {
-  // Tests for users with a profile
   await navBar.gotoSigninPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
-  // Test that users can view their profile
+  await signinPage.signin(testController, testuser.username, testuser.password);
+  // test the user page
   await navBar.gotoUserPage(testController);
+  await userPage.isDisplayed(testController);
   await userPage.hasTable(testController);
-  // Test that users can edit their profile
+  // test the edit form
   await userPage.gotoEdituserPage(testController);
+  await edituserinfoPage.isDisplayed(testController);
   await edituserinfoPage.hasForm(testController);
-  await edituserinfoPage.editProfile(testController, 'Johnny', 'https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg', '3:00pm', 4, 'Looking for people to surf with');
+  await edituserinfoPage.editProfile(testController, testuser.name, testuser.image, testuser.time, testuser.ability, testuser.description);
+  // test the delete form
   await navBar.gotoUserPage(testController);
-  await userPage.hasTable(testController);
-  // Test that users can delete their profile
   await userPage.gotoDeleteuserPage(testController);
+  await deleteuserinfoPage.isDisplayed(testController);
   await deleteuserinfoPage.hasForm(testController);
   await deleteuserinfoPage.deleteProfile(testController);
+  // test the add form
   await navBar.gotoUserPage(testController);
+  await adduserinfoPage.isDisplayed(testController);
   await adduserinfoPage.hasForm(testController);
-  // Add the user profile back to the db
-  await adduserinfoPage.createProfile(testController, 'John', 'https://i1.sndcdn.com/avatars-000133198400-ercv7n-t500x500.jpg', '2:00pm', 3, 'Looking for people to surf with');
-  await navBar.gotoUserPage(testController);
-  await userPage.hasTable(testController);
-  await navBar.logout(testController);
-
-  // Tests for users without a profile
-  await navBar.gotoSigninPage(testController);
-  await signinPage.signin(testController, newuser.username, newuser.password);
-  // Test that new users can create a profile
-  await navBar.gotoUserPage(testController);
-  await adduserinfoPage.hasForm(testController);
-  await adduserinfoPage.createProfile(testController, newuser.name, newuser.image, newuser.time, newuser.ability, newuser.description);
-  // Test that the new profile can be viewed
-  await navBar.gotoUserPage(testController);
-  await userPage.hasTable(testController);
-  // Delete the test profile
-  await userPage.gotoDeleteuserPage(testController);
-  await deleteuserinfoPage.hasForm(testController);
-  await deleteuserinfoPage.deleteProfile(testController);
+  await adduserinfoPage.createProfile(testController, 'Billy Jeans', 'https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg', '12:00pm', '1', 'Hello my name is Billy!');
 });
 
 test('Test the connect page', async (testController) => {

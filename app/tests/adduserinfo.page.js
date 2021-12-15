@@ -23,6 +23,7 @@ class AdduserinfoPage {
     const timeOption = timeSelect.find('option');
 
     await testController.typeText('#profile-name', name);
+    await testController.selectText('#profile-image');
     await testController.typeText('#profile-image', image);
     await testController.click(timeSelect);
     await testController.click(timeOption.withText(time));
