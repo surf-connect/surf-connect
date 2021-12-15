@@ -29,9 +29,6 @@ class Signup extends React.Component {
         this.setState({ error: '', redirectToReferer: true });
       }
     });
-    /*
-    Users.collection.insert({ name: email, image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', description: 'No bio setup yet...', time: '12:00am', ability: 1, owner: email });
-     */
   }
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
