@@ -5,7 +5,7 @@ import { Locations } from '../location/Location';
 const calculateAbility = (minWaveHeight, maxWaveHeight) => {
   const averageWaveHeight = (maxWaveHeight + minWaveHeight) / 2;
   // Divides by constant that gives a reasonable indicator of surf ability for the location.
-  const ability = Math.floor(averageWaveHeight / 1.3);
+  const ability = Math.floor(averageWaveHeight / 1.2);
   if (ability <= 0) {
     return 1;
   }
@@ -15,6 +15,7 @@ const calculateAbility = (minWaveHeight, maxWaveHeight) => {
   return ability;
 };
 
+/** Gets all surf forecast info for the location given. */
 const searchSpot = (waveInfo, spotName) => {
   for (let i = 0; i < waveInfo.length; i++) {
     if (waveInfo[i].beach === spotName) {
@@ -24,26 +25,35 @@ const searchSpot = (waveInfo, spotName) => {
   return 'NOT FOUND!!!';
 };
 
+/** Gets the minimum and maximum wave heights from a location and returns them in an array. */
 const getHeightRange = (waveHeight) => {
   const waveHeights = [];
   let minHeight = '';
+  // End point index of first substring.
   let endPoint = '';
   for (let i = 0; i < waveHeight.length; i++) {
     if (waveHeight.charAt(i) === '-') {
+      // Pushed min wave height to array.
       waveHeights.push(parseInt(minHeight, 10));
+      // Set end point to current index.
       endPoint = i;
       break;
     }
+    // Adds character to minHeight.
     minHeight += waveHeight.charAt(i);
   }
   let maxHeight = '';
+  // Loops from endPoint + 1 to end of string.
   for (let i = endPoint + 1; i < waveHeight.length; i++) {
     if (waveHeight.charAt(i) === ' ') {
+      // Pushed max wave height to array.
       waveHeights.push(parseInt(maxHeight, 10));
       break;
     }
+    // Adds character to maxHeight.
     maxHeight += waveHeight.charAt(i);
   }
+  // Return array of heights.
   return waveHeights;
 };
 
