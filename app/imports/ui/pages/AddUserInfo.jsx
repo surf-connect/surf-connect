@@ -5,7 +5,6 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Users } from '../../api/user/Users';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
