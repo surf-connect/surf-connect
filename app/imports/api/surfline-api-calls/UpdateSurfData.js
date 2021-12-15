@@ -68,7 +68,7 @@ export const updateSurfData = async (locationName, spotName, spotImage) => {
     name: locationName,
     image: spotImage,
     surf: `${minWaveHeight}-${maxWaveHeight} ft`,
-    wind: windSpeed,
+    wind: wind,
     weather: weather,
     temperature: temperature,
     ability: ability,
