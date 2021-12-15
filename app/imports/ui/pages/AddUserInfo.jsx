@@ -10,7 +10,8 @@ import { Users } from '../../api/user/Users';
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
   name: String,
-  image: String,
+  image: { type: String,
+    defaultValue: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' },
   description: String,
   time: {
     type: String,
