@@ -16,7 +16,8 @@ class DeleteUserInfo extends React.Component {
   // On confirm, remove the data.
   confirm(data) {
     const { _id } = data;
-    Users.collection.remove(_id, (error) => (error ?
+    Users.collection.remove(_id);
+    Meteor.users.remove(Meteor.user()._id, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Profile deleted successfully', 'success')));
   }
