@@ -15,38 +15,62 @@ const calculateAbility = (minWaveHeight, maxWaveHeight) => {
   return ability;
 };
 
+const searchSpot = (waveInfo, spotName) => {
+  for (let i = 0; i < waveInfo.length; i++) {
+    if (waveInfo[i].beach === spotName) {
+      return waveInfo[i];
+    }
+  }
+  return 'NOT FOUND!!!';
+};
+
+const getHeightRange = (waveHeight) => {
+  const waveHeights = [];
+  let minHeight = '';
+  let endPoint = '';
+  for (let i = 0; i < waveHeight.length; i++) {
+    if (waveHeight.charAt(i) === '-') {
+      waveHeights.push(parseInt(minHeight, 10));
+      endPoint = i;
+      break;
+    }
+    minHeight += waveHeight.charAt(i);
+  }
+
+  let maxHeight = '';
+  for (let i = endPoint + 1; i < waveHeight.length; i++) {
+    if (waveHeight.charAt(i) === ' ') {
+      waveHeights.push(parseInt(maxHeight, 10));
+      break;
+    }
+    maxHeight += waveHeight.charAt(i);
+  }
+  return waveHeights;
+};
+
 /** Makes several API calls to the Surfline API to receive wave, tide, tide, and weather data for a spot. */
-export const updateSurfData = async (spotId, spotName, spotImage) => {
+export const updateSurfData = async (locationName, spotName, spotImage) => {
   // Makes API call to receive wave data for the spot given.
-  const waveInfo = await fetch(`https://services.surfline.com/kbyg/spots/forecasts/wave?spotId=${spotId}&days=1&intervalHours=24&maxHeights=false&sds=false`);
-  console.log(waveInfo);
+  const waveInfo = await fetch('https://hawaiibeachsafety.com/rest/conditions.json?beach_id=5');
   const waveInfoToJson = await waveInfo.json();
-  const minWaveHeight = Math.ceil(waveInfoToJson.data.wave[0].surf.min);
-  const maxWaveHeight = Math.ceil(waveInfoToJson.data.wave[0].surf.max);
-  const swellHeight = waveInfoToJson.data.wave[0].swells[0].height;
-  // Makes API call to receive wind data for the spot given.
-  const windInfo = await fetch(`https://services.surfline.com/kbyg/spots/forecasts/wind?spotId=${spotId}&days=1&intervalHours=24&maxHeights=false&sds=false`);
-  const windInfoToJson = await windInfo.json();
-  const windSpeed = windInfoToJson.data.wind[0].speed;
-  // Makes API call to receive tide data for the spot given.
-  const tideInfo = await fetch(`https://services.surfline.com/kbyg/spots/forecasts/tides?spotId=${spotId}&days=1&intervalHours=24&maxHeights=false&sds=false`);
-  const tideInfoToJson = await tideInfo.json();
-  const tide = tideInfoToJson.data.tides[0].height;
-  // Makes API call to receive weather data for the spot given.
-  const weatherInfo = await fetch(`https://services.surfline.com/kbyg/spots/forecasts/weather?spotId=${spotId}&days=1&intervalHours=24&maxHeights=false&sds=false`);
-  const weatherInfoToJson = await weatherInfo.json();
-  const temp = Math.floor(weatherInfoToJson.data.weather[0].temperature);
+  const locationInfo = searchSpot(waveInfoToJson, spotName);
+  const waveHeight = locationInfo.surf;
+  const wind = locationInfo.wind;
+  const weather = locationInfo.weather;
+  const temperature = locationInfo.temp;
+  const newHeight = getHeightRange(waveHeight);
+  const minWaveHeight = newHeight[0];
+  const maxWaveHeight = newHeight[1];
   // Calculates the surf ability of the spot.
   const ability = calculateAbility(minWaveHeight, maxWaveHeight);
   // Creates a location object with the given information.
   const location = {
-    name: spotName,
+    name: locationName,
     image: spotImage,
     surf: `${minWaveHeight}-${maxWaveHeight} ft`,
-    tide: tide,
     wind: windSpeed,
-    swells: swellHeight,
-    weather: temp,
+    weather: weather,
+    temperature: temperature,
     ability: ability,
   };
   // Checks if location is in DB.

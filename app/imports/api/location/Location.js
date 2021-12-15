@@ -13,10 +13,9 @@ class LocationCollection {
       name: String,
       image: String,
       surf: String,
-      tide: Number,
-      wind: Number,
-      swells: Number,
-      weather: Number,
+      wind: String,
+      weather: String,
+      temperature: String,
       ability: { type: Number, allowedValues: [1, 2, 3, 4, 5] },
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
