@@ -4,6 +4,7 @@ import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Locations } from '../../api/location/Location';
+import { Users } from '../../api/user/Users';
 
 class Forecast extends React.Component {
 
@@ -47,16 +48,21 @@ class Forecast extends React.Component {
 }
 
 Forecast.propTypes = {
+  currentUser: PropTypes.array.isRequired,
   locations: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe(Locations.userPublicationName);
-  const ready = subscription.ready();
+  const subscription2 = Meteor.subscribe(Users.userPublicationName);
+  const ready = subscription.ready() && subscription2.ready();
   const locations = Locations.collection.find({}).fetch();
+  const currUser = Meteor.user() ? Meteor.user().username : '';
+  const currentUser = Users.collection.find({ owner: currUser }).fetch();
   return {
     ready,
     locations,
+    currentUser,
   };
 })(Forecast);
