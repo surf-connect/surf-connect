@@ -36,7 +36,6 @@ const getHeightRange = (waveHeight) => {
     }
     minHeight += waveHeight.charAt(i);
   }
-
   let maxHeight = '';
   for (let i = endPoint + 1; i < waveHeight.length; i++) {
     if (waveHeight.charAt(i) === ' ') {
@@ -79,11 +78,11 @@ export const updateSurfData = async (locationName, spotName, spotImage) => {
     Locations.collection.insert(location);
   } else {
     // Updates LocationCollection with new data from API.
-    Locations.collection.update({ name: spotName }, { $set: location }, (error) => (error ?
+    Locations.collection.update({ name: locationName }, { $set: location }, (error) => (error ?
       console.log(`Error updating location: ${spotName}`) :
       console.log(`Successfully updated location: ${spotName}`)));
   }
   // Debugging messages on server side.
-  console.log(`Inserted location: ${spotName} to DB.`);
+  console.log(`Inserted location: ${locationName} to DB.`);
   console.log(`Location data: ${JSON.stringify(location)}`);
 };
