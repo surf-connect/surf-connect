@@ -6,6 +6,8 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Users } from '../../api/user/Users';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -30,9 +32,13 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
 class AddUserInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirectToReferer: false };
+  }
 
   // On submit, insert the data.
-  submit(data, formRef) {
+  submit(data) {
     const { name, image, description, time, ability } = data;
     const owner = Meteor.user().username;
     Users.collection.insert({ name, image, description, time, ability, owner },
@@ -41,7 +47,7 @@ class AddUserInfo extends React.Component {
           swal('Error', error.message, 'error');
         } else {
           swal('Success', 'Profile created successfully', 'success');
-          formRef.reset();
+          this.setState({ error: '', redirectToReferer: true });
         }
       });
   }
@@ -49,6 +55,11 @@ class AddUserInfo extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
     let fRef = null;
+    const { from } = this.props.location.state || { from: { pathname: '/home' } };
+    // if correct authentication, redirect to from: page instead of signup screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
     return (
       <Grid id='add-user' container centered>
         <Grid.Column>
@@ -69,5 +80,9 @@ class AddUserInfo extends React.Component {
     );
   }
 }
+
+AddUserInfo.propTypes = {
+  location: PropTypes.object,
+};
 
 export default AddUserInfo;
