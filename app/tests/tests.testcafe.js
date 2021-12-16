@@ -10,6 +10,7 @@ import { forecastPage } from './forecast.page';
 import { connectPage } from './connect.page';
 import { suggestionsPage } from './suggestions.page';
 import { homePage } from './home.page';
+import { signupPage } from './signup.page';
 
 /* global fixture:false, test:false */
 
@@ -17,6 +18,7 @@ import { homePage } from './home.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const testuser = { username: 'test@foo.com', password: 'changeme', name: 'New User',
   image: 'https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg', time: '10:00am', ability: 2, description: 'Lets go surfing' };
+const newuser = { username: 'new@foo.com', password: 'changeme', name: 'New User', image: 'https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg', time: '10:00am', ability: 2, description: 'Lets go surfing' };
 
 fixture('surf-connect localhost test with default db').page('http://localhost:3000');
 
@@ -47,8 +49,13 @@ test('Test the forecast page', async (testController) => {
 });
 
 test('Test the user pages and forms', async (testController) => {
-  await navBar.gotoSigninPage(testController);
-  await signinPage.signin(testController, testuser.username, testuser.password);
+  // test that users can sign up
+  await navBar.gotoSignupPage(testController);
+  await signupPage.signupUser(testController, newuser.username, newuser.password);
+  // test the add form
+  await adduserinfoPage.isDisplayed(testController);
+  await adduserinfoPage.hasForm(testController);
+  await adduserinfoPage.createProfile(testController, newuser.name, newuser.image, newuser.time, newuser.ability, newuser.description);
   // test the user page
   await navBar.gotoUserPage(testController);
   await userPage.isDisplayed(testController);
@@ -64,11 +71,6 @@ test('Test the user pages and forms', async (testController) => {
   await deleteuserinfoPage.isDisplayed(testController);
   await deleteuserinfoPage.hasForm(testController);
   await deleteuserinfoPage.deleteProfile(testController);
-  // test the add form
-  await navBar.gotoUserPage(testController);
-  await adduserinfoPage.isDisplayed(testController);
-  await adduserinfoPage.hasForm(testController);
-  await adduserinfoPage.createProfile(testController, 'Billy Jeans', 'https://img.freepik.com/free-vector/man-character-avatar-icon_51635-2890.jpg?size=338&ext=jpg', '12:00pm', '1', 'Hello my name is Billy!');
 });
 
 test('Test the connect page', async (testController) => {
